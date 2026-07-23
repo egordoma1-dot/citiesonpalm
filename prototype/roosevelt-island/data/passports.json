@@ -1,0 +1,4416 @@
+{
+  "meta": {
+    "name": "Cities On Palm \u2014 Roosevelt Island pilot",
+    "version": "prototype-0.1",
+    "built": "2026-07-13",
+    "jurisdiction": "cop:dist:us-ny-36061:roosevelt-island",
+    "warning": "Manually compiled. No automated ingestion. Geometry is approximate throughout \u2014 hand-placed in an island-local frame, not surveyed. Read GAPS.md before trusting any number here."
+  },
+  "sources": {
+    "rioc-status": {
+      "name": "RIOC \u2014 Status & Jurisdiction",
+      "uri": "https://rioc.ny.gov/166/Status-Jurisdiction",
+      "org": "Roosevelt Island Operating Corporation",
+      "kind": "official"
+    },
+    "rioc-tram": {
+      "name": "RIOC \u2014 Tram",
+      "uri": "https://www.rioc.ny.gov/community/transportation/tram",
+      "org": "RIOC",
+      "kind": "official"
+    },
+    "rioc-board": {
+      "name": "RIOC \u2014 Board of Directors",
+      "uri": "https://rioc.ny.gov/149/Board-of-Directors",
+      "org": "RIOC",
+      "kind": "official"
+    },
+    "rioc-meetings": {
+      "name": "RIOC \u2014 Meetings & Notices",
+      "uri": "https://rioc.ny.gov/336/Meetings-Notices",
+      "org": "RIOC",
+      "kind": "official"
+    },
+    "rioc-news": {
+      "name": "RIOC \u2014 News & Press Releases",
+      "uri": "https://rioc.ny.gov/453/News",
+      "org": "RIOC",
+      "kind": "official"
+    },
+    "nysa-rioc": {
+      "name": "NY State Archives \u2014 RIOC President/CEO files (agency history)",
+      "uri": "https://findingaids.nysed.gov/do/6270cf61-417d-5639-b8c2-b8f4ca2f6e74",
+      "org": "New York State Archives",
+      "kind": "official"
+    },
+    "nycdot-bridges": {
+      "name": "NYC DOT \u2014 Bridges over Smaller Waterways",
+      "uri": "https://www.nyc.gov/html/dot/html/infrastructure/bridges-misc.shtml",
+      "org": "NYC Department of Transportation",
+      "kind": "official"
+    },
+    "poma": {
+      "name": "POMA \u2014 AirTram Roosevelt Island (project page)",
+      "uri": "https://www.poma.net/en/work/airtram-roosevelt-island/",
+      "org": "POMA (contractor)",
+      "kind": "contractor"
+    },
+    "envac-50": {
+      "name": "Envac \u2014 50 Years Underground",
+      "uri": "https://www.envacgroup.com/news/50-years-underground-envac-celebrates-five-decades-of-innovation-beneath-roosevelt-island/",
+      "org": "Envac (contractor)",
+      "kind": "contractor"
+    },
+    "soury-avac": {
+      "name": "AVAC to Get Major Upgrade (RIOC/Envac release, 1 May 2019)",
+      "uri": "https://www.soury.com/avac-roosevelt-islands-automated-vacuum-waste-collection-system-to-get-major-upgrade-after-more-than-40-years-of-service/",
+      "org": "Soury Communications for RIOC/Envac",
+      "kind": "press_release"
+    },
+    "waste360": {
+      "name": "Waste360 \u2014 Roosevelt Island AVAC Gets Upgrade",
+      "uri": "https://www.waste360.com/waste-collection-transfer/nyc-s-roosevelt-island-avac-waste-collection-system-gets-upgrade-after-40-plus-years",
+      "org": "Waste360",
+      "kind": "trade_press"
+    },
+    "wp-tram": {
+      "name": "Wikipedia \u2014 Roosevelt Island Tramway",
+      "uri": "https://en.wikipedia.org/wiki/Roosevelt_Island_Tramway",
+      "org": "Wikipedia",
+      "kind": "tertiary"
+    },
+    "wp-bridge": {
+      "name": "Wikipedia \u2014 Roosevelt Island Bridge",
+      "uri": "https://en.wikipedia.org/wiki/Roosevelt_Island_Bridge",
+      "org": "Wikipedia",
+      "kind": "tertiary"
+    },
+    "wp-smallpox": {
+      "name": "Wikipedia \u2014 Smallpox Hospital",
+      "uri": "https://en.wikipedia.org/wiki/Smallpox_Hospital",
+      "org": "Wikipedia",
+      "kind": "tertiary"
+    },
+    "wp-ri": {
+      "name": "Wikipedia \u2014 Roosevelt Island",
+      "uri": "https://en.wikipedia.org/wiki/Roosevelt_Island",
+      "org": "Wikipedia",
+      "kind": "tertiary"
+    },
+    "wp-rioc": {
+      "name": "Wikipedia \u2014 Roosevelt Island Operating Corporation",
+      "uri": "https://en.wikipedia.org/wiki/Roosevelt_Island_Operating_Corporation",
+      "org": "Wikipedia",
+      "kind": "tertiary"
+    },
+    "wp-cornell": {
+      "name": "Wikipedia \u2014 Cornell Tech",
+      "uri": "https://en.wikipedia.org/wiki/Cornell_Tech",
+      "org": "Wikipedia",
+      "kind": "tertiary"
+    },
+    "newtown-tram": {
+      "name": "Newtown Pentacle \u2014 Roosevelt Island Tram work (Apr 2010)",
+      "uri": "https://newtownpentacle.com/2010/04/10/roosevelt-island-tram-work/",
+      "org": "The Newtown Pentacle",
+      "kind": "press"
+    },
+    "almanack": {
+      "name": "New York Almanack \u2014 Roosevelt Island Opens New Aerial Tramway (Nov 2010)",
+      "uri": "https://www.newyorkalmanack.com/2010/12/roosevelt-island-opens-new-aerial-tramway/",
+      "org": "New York Almanack",
+      "kind": "press"
+    },
+    "6sqft-tram": {
+      "name": "6sqft \u2014 The History of the Roosevelt Island Tramway",
+      "uri": "https://www.6sqft.com/the-history-of-the-roosevelt-island-tramway/",
+      "org": "6sqft",
+      "kind": "press"
+    },
+    "wbmelvin": {
+      "name": "Walter B. Melvin Architects \u2014 Smallpox Hospital / Renwick Ruin",
+      "uri": "https://wbmelvin.com/portfolio-item/smallpox-hospital-renwick/",
+      "org": "Walter B. Melvin Architects (consultant)",
+      "kind": "contractor"
+    },
+    "nylandmarks": {
+      "name": "NY Landmarks Conservancy \u2014 Renwick Ruin",
+      "uri": "https://nylandmarks.org/celebrate-50-at-50/renwick-ruin/",
+      "org": "New York Landmarks Conservancy",
+      "kind": "ngo"
+    },
+    "untapped-ruin": {
+      "name": "Untapped New York \u2014 Inside the Abandoned Smallpox Hospital",
+      "uri": "https://www.untappedcities.com/photos-inside-the-abandoned-smallpox-hospital-on-roosevelt-island/",
+      "org": "Untapped New York",
+      "kind": "press"
+    },
+    "rihs-smallpox": {
+      "name": "Roosevelt Island Historical Society \u2014 Smallpox Ruin",
+      "uri": "https://rihs.us/riwalk/Tour_South_6__Smallpox_Ruin.html",
+      "org": "Roosevelt Island Historical Society",
+      "kind": "ngo"
+    },
+    "fasttrash": {
+      "name": "Fast Trash \u2014 Roosevelt Island's AVAC",
+      "uri": "https://fasttrash.org/exhibition/roosevelt-islands-avac/",
+      "org": "Center for Urban Pedagogy",
+      "kind": "ngo"
+    },
+    "npr-avac": {
+      "name": "NPR \u2014 How Roosevelt Island Sucks Away Summer Trash Stink",
+      "uri": "https://www.npr.org/2017/07/26/539304811/how-new-york-s-roosevelt-island-sucks-away-summer-trash-stink",
+      "org": "NPR",
+      "kind": "press"
+    },
+    "rilighthouse": {
+      "name": "RI Lighthouse \u2014 Roosevelt Island's Underground Trash System",
+      "uri": "https://www.ri-lighthouse.com/p/roosevelt-islands-underground-trash",
+      "org": "RI Lighthouse",
+      "kind": "press"
+    },
+    "ridaily-avac": {
+      "name": "Roosevelt Island Daily \u2014 AVAC System: History and Challenges (Apr 2025)",
+      "uri": "https://rooseveltislanddaily.news/2025/04/07/avac-system-roosevelt-island/",
+      "org": "Roosevelt Island Daily",
+      "kind": "press"
+    },
+    "cornell-open": {
+      "name": "Cornell Tech \u2014 Campus Opens on Roosevelt Island",
+      "uri": "https://tech.cornell.edu/news/cornell-tech-campus-opens-on-roosevelt-island-marking-transformational-mile/",
+      "org": "Cornell Tech",
+      "kind": "official"
+    },
+    "constrdive": {
+      "name": "Construction Dive \u2014 NYC's $2B Cornell Tech campus opens",
+      "uri": "https://www.constructiondive.com/news/nycs-2b-cornell-tech-academic-campus-opens/505024/",
+      "org": "Construction Dive",
+      "kind": "trade_press"
+    },
+    "structurae": {
+      "name": "Structurae \u2014 Roosevelt Island Bridge",
+      "uri": "https://structurae.net/en/structures/roosevelt-island-bridge",
+      "org": "Structurae",
+      "kind": "tertiary"
+    },
+    "som": {
+      "name": "SOM \u2014 Cornell Tech Campus Framework Plan",
+      "uri": "https://www.som.com/projects/cornell-tech-campus-framework-plan/",
+      "org": "SOM (architect)",
+      "kind": "contractor"
+    }
+  },
+  "objects": [
+    {
+      "id": "cop:obj:us-ny-36061:tram",
+      "type": "aerial_tramway",
+      "name": "Roosevelt Island Tramway",
+      "also": [
+        "The Tram",
+        "AirTram"
+      ],
+      "geom": {
+        "kind": "line",
+        "pts": [
+          [
+            40.757501,
+            -73.954275
+          ],
+          [
+            40.757906,
+            -73.957383
+          ],
+          [
+            40.75853,
+            -73.959904
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        },
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:upper-east-side",
+          "note": "Manhattan terminal + one tower stand off-island"
+        },
+        {
+          "rel": "crosses",
+          "target": "cop:obj:us-ny-36061:east-river-west-channel"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "value": "in_service",
+          "source": "rioc-tram",
+          "tier": "official_document"
+        },
+        "opened": {
+          "value": "1976-05-17",
+          "source": "wp-tram",
+          "tier": "cross_referenced",
+          "note": "Opened May 1976; sources vary between 17 May and July 1976."
+        },
+        "design_life": {
+          "value": "17 years (original system, as designed)",
+          "source": "newtown-tram",
+          "tier": "single_source",
+          "note": "The original system ran 34 years \u2014 double its design life."
+        }
+      },
+      "ownership": {
+        "owner": {
+          "value": "Roosevelt Island Operating Corporation (RIOC)",
+          "source": "poma",
+          "tier": "authoritative",
+          "note": "POMA, the contractor, names RIOC as owner."
+        },
+        "tenure": {
+          "value": "public \u2014 NY State public benefit corporation",
+          "source": "rioc-status",
+          "tier": "official_document"
+        }
+      },
+      "responsibility": {
+        "operator": {
+          "value": "Leitner-Poma of America, under contract to RIOC",
+          "source": "poma",
+          "tier": "official_document",
+          "note": "5-year operating agreement from 2010, renewed 2019."
+        },
+        "fare_system": {
+          "value": "MTA \u2014 OMNY / MetroCard integrated since 2005; OMNY from 24 Aug 2023",
+          "source": "wp-tram",
+          "tier": "cross_referenced"
+        },
+        "note": "SPLIT RESPONSIBILITY: RIOC owns it, a French contractor runs it, the MTA collects the fare. No single body is accountable end-to-end."
+      },
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_published",
+          "note": "Original 1976 construction cost not found in any public source. Built by the NY State Urban Development Corporation; UDC records are at the NY State Archives and are not online."
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_published",
+          "note": "RIOC publishes an operating budget but does not break out tram maintenance as a line item in any document found."
+        }
+      },
+      "projects": [
+        {
+          "id": "cop:proj:us-ny-36061:tram-modernization",
+          "title": "Roosevelt Island Tram Modernization Project",
+          "status": "completed",
+          "authorised_by": "RIOC Board of Directors",
+          "contractor": {
+            "value": "POMA / Leitner-Poma of America (design-build)",
+            "source": "6sqft-tram",
+            "tier": "cross_referenced",
+            "note": "Contract awarded by RIOC Board, November 2008."
+          },
+          "engineers": {
+            "value": "LiRo Engineering; Thornton Tomasetti; Shea, Carr & Jewell",
+            "source": "almanack",
+            "tier": "single_source"
+          },
+          "budget_history": [
+            {
+              "date": "2006",
+              "amount": 15000000,
+              "label": "Announced after the April 2006 breakdown",
+              "src": "wp-tram"
+            },
+            {
+              "date": "2008-mid",
+              "amount": 25000000,
+              "label": "Revised before contract award",
+              "src": "wp-tram"
+            },
+            {
+              "date": "2010",
+              "amount": 25000000,
+              "label": "Final",
+              "src": "newtown-tram"
+            }
+          ],
+          "funding": {
+            "value": "$10M RIOC + $15M New York State",
+            "source": "newtown-tram",
+            "tier": "single_source"
+          },
+          "cost_variance": {
+            "from": 15000000,
+            "to": 25000000,
+            "pct": 66.7
+          },
+          "milestones": [
+            {
+              "name": "Contract awarded to POMA",
+              "planned": null,
+              "actual": "2008-11"
+            },
+            {
+              "name": "Service suspended",
+              "planned": "2010-03-01",
+              "actual": "2010-03-01"
+            },
+            {
+              "name": "Service restored",
+              "planned": "2010-09-01",
+              "actual": "2010-11-30",
+              "note": "Announced as a six-month closure. Took nine."
+            }
+          ],
+          "schedule_variance": {
+            "planned_months": 6,
+            "actual_months": 9,
+            "pct": 50.0
+          },
+          "src": "wp-tram"
+        }
+      ],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_published",
+        "note": "No inspection reports for the tram are published by RIOC. Cable and haul-rope inspection records exist (they are required) but are not public."
+      },
+      "attributes": {
+        "span_m": {
+          "value": 960,
+          "source": "poma",
+          "tier": "official_document"
+        },
+        "cabins": {
+          "value": 2,
+          "source": "poma",
+          "tier": "official_document"
+        },
+        "cabin_capacity": {
+          "status": "contested",
+          "positions": [
+            {
+              "value": "125 passengers",
+              "src": "6sqft-tram"
+            },
+            {
+              "value": "109 passengers plus one attendant",
+              "src": "wp-tram"
+            }
+          ],
+          "note": "Contractor and encyclopaedic sources disagree on cabin capacity."
+        },
+        "annual_ridership": {
+          "value": "~2.5M (2016); RIOC estimated 2.6\u20132.7M subsequently",
+          "source": "wp-tram",
+          "tier": "single_source"
+        },
+        "max_height_m": {
+          "value": "~76 m (250 ft) above the East River",
+          "source": "newtown-tram",
+          "tier": "single_source"
+        },
+        "availability": {
+          "value": "99.8% (contractor's figure)",
+          "source": "poma",
+          "tier": "single_source",
+          "note": "Self-reported by the contractor. No independent audit found."
+        }
+      },
+      "connected": [
+        "cop:obj:us-ny-36061:tram-plaza",
+        "cop:obj:us-ny-36061:motorgate"
+      ],
+      "history": [
+        {
+          "t": "1971",
+          "what": "Aerial tramway proposed as a temporary measure after the 63rd St subway line fell behind schedule.",
+          "src": "wp-tram"
+        },
+        {
+          "t": "1976-05",
+          "what": "Opens. First commuter aerial tramway in the United States.",
+          "src": "wp-tram"
+        },
+        {
+          "t": "2005-09-03",
+          "what": "Power failure strands two cabins over the East River for hours.",
+          "src": "wp-tram"
+        },
+        {
+          "t": "2006-04-20",
+          "what": "Electrical failure strands 69 passengers up to 250 ft above the river for ~12 hours. Backup generators fail to start.",
+          "src": "wp-tram"
+        },
+        {
+          "t": "2006",
+          "what": "RIOC spends $500,000 on power system upgrades; service resumes 1 September.",
+          "src": "wp-tram"
+        },
+        {
+          "t": "2008-11",
+          "what": "RIOC Board awards design-build contract to POMA.",
+          "src": "6sqft-tram"
+        },
+        {
+          "t": "2010-03-01",
+          "what": "Service suspended for a stated six-month modernization.",
+          "src": "newtown-tram"
+        },
+        {
+          "t": "2010-11-30",
+          "what": "Service restored. Nine months, not six.",
+          "src": "wp-tram"
+        },
+        {
+          "t": "2023-08-24",
+          "what": "OMNY tap-to-pay accepted.",
+          "src": "wp-tram"
+        },
+        {
+          "t": "2024",
+          "what": "Ridership exceeds pre-COVID levels. Residents request priority boarding; RIOC declines, citing a state law against 'undue or unreasonable preference'.",
+          "src": "wp-tram"
+        }
+      ],
+      "flag": "The published cost rose 67% between announcement and award, and the closure ran 50% long. Both facts are public. Neither is presented together anywhere but here.",
+      "tier": 1,
+      "revision": {
+        "id": "395447bc0e0d",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:renwick-ruin",
+      "type": "ruin",
+      "name": "Smallpox Hospital (Renwick Ruin)",
+      "also": [
+        "Renwick Smallpox Hospital",
+        "Maternity and Charity Hospital Training School",
+        "Riverside Hospital"
+      ],
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.751712,
+            -73.957518
+          ],
+          [
+            40.751965,
+            -73.957337
+          ],
+          [
+            40.751785,
+            -73.956899
+          ],
+          [
+            40.751532,
+            -73.95708
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:obj:us-ny-36061:southpoint-park"
+        },
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "value": "ruin \u2014 structurally stabilised, closed to the public",
+          "source": "untapped-ruin",
+          "tier": "single_source"
+        },
+        "built": {
+          "value": "1854\u20131856",
+          "source": "wp-smallpox",
+          "tier": "cross_referenced"
+        },
+        "opened": {
+          "value": "1856-12-18",
+          "source": "wp-smallpox",
+          "tier": "official_document",
+          "note": "Under the NYC Commission of Charities and Correction."
+        },
+        "closed": {
+          "value": "1950s",
+          "source": "wp-smallpox",
+          "tier": "cross_referenced"
+        },
+        "architect": {
+          "value": "James Renwick Jr.",
+          "source": "wp-smallpox",
+          "tier": "authoritative",
+          "note": "Also architect of St Patrick's Cathedral."
+        },
+        "wings_added": {
+          "value": "1903\u20131905 (York & Sawyer; Renwick, Aspinwall & Owen)",
+          "source": "wbmelvin",
+          "tier": "official_document"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "value": "Roosevelt Island Operating Corporation (RIOC)",
+          "source": "untapped-ruin",
+          "tier": "cross_referenced"
+        },
+        "tenure": {
+          "value": "public",
+          "source": "rioc-status",
+          "tier": "official_document"
+        }
+      },
+      "responsibility": {
+        "maintainer": {
+          "value": "RIOC",
+          "source": "untapped-ruin",
+          "tier": "cross_referenced"
+        },
+        "regulator": {
+          "value": "NYC Landmarks Preservation Commission (individual landmark, 1976)",
+          "source": "wp-smallpox",
+          "tier": "official_document"
+        },
+        "federal": {
+          "value": "National Register of Historic Places (listed 1972)",
+          "source": "wp-smallpox",
+          "tier": "official_document"
+        },
+        "note": "The only landmarked ruin in New York City."
+      },
+      "finance": {
+        "construction_cost": {
+          "value": {
+            "amount": 38000,
+            "currency": "USD",
+            "year": 1856
+          },
+          "source": "rihs-smallpox",
+          "tier": "single_source",
+          "note": "Roughly $158,000 in a later year's money, per RIHS. Built with inmate labour from the island's penitentiary \u2014 which is why it was so cheap."
+        },
+        "stabilisation_cost": {
+          "status": "contested",
+          "positions": [
+            {
+              "value": "$4.5 million (project figure, repeatedly cited 2009\u20132021)",
+              "src": "wp-smallpox"
+            },
+            {
+              "value": "$5 million (retrospective account)",
+              "src": "nylandmarks"
+            },
+            {
+              "value": "$3 million 'needed' (preservationists' estimate, 2008)",
+              "src": "wp-smallpox"
+            }
+          ],
+          "note": "Four figures across four sources, spanning 2008\u20132020s, none traceable to a published RIOC contract or budget line. It is not clear from any public document what was actually spent, by whom, or when."
+        },
+        "other_funding": {
+          "value": "$17,000 grant from the NY Landmarks Conservancy to Four Freedoms Park for an engineering study; Friends of the Ruin reported raising >$1.2M by 2022",
+          "source": "nylandmarks",
+          "tier": "single_source"
+        }
+      },
+      "projects": [
+        {
+          "id": "cop:proj:us-ny-36061:renwick-stabilisation",
+          "title": "Structural stabilisation",
+          "status": {
+            "status": "contested",
+            "positions": [
+              {
+                "value": "completed (a '$4.5M stabilization project was completed in the 2020s')",
+                "src": "wp-smallpox"
+              },
+              {
+                "value": "partial \u2014 RIOC 'installed temporary stabilization \u2026 still not secure enough for general public access'",
+                "src": "untapped-ruin"
+              },
+              {
+                "value": "ongoing \u2014 consultant advanced stabilisation drawings to design development in 2019",
+                "src": "wbmelvin"
+              }
+            ],
+            "note": "Whether this project is finished is genuinely unclear from the public record."
+          },
+          "consultant": {
+            "value": "Walter B. Melvin Architects (existing conditions survey, stabilisation drawings, cost estimate)",
+            "source": "wbmelvin",
+            "tier": "official_document"
+          },
+          "budget_history": [],
+          "milestones": [
+            {
+              "name": "North wing partially collapses",
+              "planned": null,
+              "actual": "2007-12-26"
+            },
+            {
+              "name": "Groundbreaking on Four Freedoms Park incl. stabilisation plans",
+              "planned": null,
+              "actual": "2009-05-28"
+            },
+            {
+              "name": "Conditions survey addendum; drawings to design development",
+              "planned": null,
+              "actual": "2019"
+            },
+            {
+              "name": "Open to the public",
+              "planned": "unknown",
+              "actual": null,
+              "note": "Still closed."
+            }
+          ],
+          "src": "wp-smallpox"
+        }
+      ],
+      "inspections": {
+        "value": "Giorgio Cavaglieri inspected the structure in the 1970s and planned wall reinforcement. Walter B. Melvin Architects produced an existing-conditions survey and a prioritisation plan; the 2019 addendum is not published.",
+        "source": "wbmelvin",
+        "tier": "official_document"
+      },
+      "attributes": {
+        "material": {
+          "value": "Island gneiss, quarried on Blackwell's Island",
+          "source": "wbmelvin",
+          "tier": "official_document"
+        },
+        "original_beds": {
+          "value": 100,
+          "source": "wp-smallpox",
+          "tier": "cross_referenced"
+        },
+        "dimensions": {
+          "value": "104 ft \u00d7 45 ft (original block)",
+          "source": "wp-smallpox",
+          "tier": "single_source"
+        },
+        "style": {
+          "value": "Gothic Revival",
+          "source": "wbmelvin",
+          "tier": "authoritative"
+        },
+        "illuminated": {
+          "value": "Nightly since 1995",
+          "source": "wp-smallpox",
+          "tier": "single_source"
+        }
+      },
+      "connected": [
+        "cop:obj:us-ny-36061:southpoint-park",
+        "cop:obj:us-ny-36061:four-freedoms-park"
+      ],
+      "history": [
+        {
+          "t": "1854-04-01",
+          "what": "Construction begins on the southern tip of Blackwell's Island. Labour is supplied by inmates of the island's penitentiary.",
+          "src": "wp-smallpox"
+        },
+        {
+          "t": "1856-12-18",
+          "what": "Opens. The first hospital in the United States built for smallpox patients.",
+          "src": "wp-smallpox"
+        },
+        {
+          "t": "1875",
+          "what": "Smallpox operations move to North Brother Island. Building becomes a nurses' training school.",
+          "src": "wp-smallpox"
+        },
+        {
+          "t": "1903-1905",
+          "what": "Two Gothic Revival wings added.",
+          "src": "wbmelvin"
+        },
+        {
+          "t": "1950s",
+          "what": "Closed. Abandoned. Roof, floors and stairs are lost over the following decades.",
+          "src": "wp-smallpox"
+        },
+        {
+          "t": "1972",
+          "what": "Listed on the National Register of Historic Places.",
+          "src": "wp-smallpox"
+        },
+        {
+          "t": "1976",
+          "what": "Designated a New York City landmark \u2014 the city's only landmarked ruin.",
+          "src": "wp-smallpox"
+        },
+        {
+          "t": "2007-12-26",
+          "what": "A section of the north wing collapses.",
+          "src": "wp-smallpox"
+        },
+        {
+          "t": "2009-05-28",
+          "what": "Ground broken on Four Freedoms Park; stabilisation of the ruin is folded into the plan.",
+          "src": "wp-smallpox"
+        },
+        {
+          "t": "2019",
+          "what": "Consultant advances stabilisation drawings to design development.",
+          "src": "wbmelvin"
+        },
+        {
+          "t": "present",
+          "what": "Fenced. Closed to the public. Illuminated nightly.",
+          "src": "untapped-ruin"
+        }
+      ],
+      "flag": "Ask the simplest possible question \u2014 what did it cost to stabilise this ruin, and is the work finished \u2014 and the public record cannot answer either. This single object is the argument for the project.",
+      "tier": 1,
+      "revision": {
+        "id": "320313bc2bbd",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:avac",
+      "type": "waste_network",
+      "name": "AVAC \u2014 Automated Vacuum Collection System",
+      "also": [
+        "The pneumatic tubes",
+        "Envac system"
+      ],
+      "geom": {
+        "kind": "line",
+        "pts": [
+          [
+            40.757082,
+            -73.953873
+          ],
+          [
+            40.759918,
+            -73.951822
+          ],
+          [
+            40.763087,
+            -73.949586
+          ],
+          [
+            40.766239,
+            -73.947309
+          ],
+          [
+            40.767837,
+            -73.946223
+          ]
+        ],
+        "confidence": "approximate",
+        "note": "NETWORK GEOMETRY IS NOT PUBLISHED. This line follows Main Street as a placeholder. The actual routing of ~3 miles of buried 20-inch pipe is not in any public dataset found. See SCHEMA_NOTES.md #3."
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "value": "in service \u2014 reported failing",
+          "source": "ridaily-avac",
+          "tier": "single_source",
+          "note": "Residents and local press report repeated failures through 2025."
+        },
+        "installed": {
+          "status": "contested",
+          "positions": [
+            {
+              "value": "1975",
+              "src": "rioc-status"
+            },
+            {
+              "value": "1972 (in one line of the contractor's own 50th-anniversary release, which is otherwise dated to 1975)",
+              "src": "envac-50"
+            }
+          ],
+          "note": "Even the contractor's anniversary announcement contradicts itself."
+        },
+        "design_life": {
+          "status": "unknown",
+          "reason": "not_published"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "value": "RIOC",
+          "source": "rioc-status",
+          "tier": "official_document"
+        },
+        "tenure": {
+          "value": "public",
+          "source": "rioc-status",
+          "tier": "official_document"
+        }
+      },
+      "responsibility": {
+        "operator": {
+          "status": "contested",
+          "positions": [
+            {
+              "value": "NYC Department of Sanitation (DSNY) \u2014 'has operated AVAC for 40-plus years'",
+              "src": "soury-avac"
+            },
+            {
+              "value": "RIOC \u2014 'RIOC operates the island's high-tech sanitation system'",
+              "src": "wp-rioc"
+            },
+            {
+              "value": "'Technically, RIOC oversees AVAC.'",
+              "src": "ridaily-avac"
+            }
+          ],
+          "note": "A city agency and a state corporation are each described as running it. The residents cannot tell who to call."
+        },
+        "note": "This is the clearest accountability gap on the island: a state-owned system operated by a city agency, with neither presenting itself as the responsible party."
+      },
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_published",
+          "note": "No public figure for the original 1975 installation was found. It was built under the NY State Urban Development Corporation."
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_published"
+        },
+        "upgrade_2019": {
+          "value": {
+            "amount": 1700000,
+            "currency": "USD",
+            "year": 2019
+          },
+          "source": "soury-avac",
+          "tier": "official_document",
+          "note": "Contract awarded to Envac Iberia by RIOC."
+        }
+      },
+      "projects": [
+        {
+          "id": "cop:proj:us-ny-36061:avac-upgrade-2019",
+          "title": "AVAC modernization",
+          "status": {
+            "status": "unknown",
+            "reason": "not_published",
+            "note": "Announced May 2019 as a six-month upgrade. No completion notice, no final cost, and no status update found in any RIOC publication."
+          },
+          "contractor": {
+            "value": "Envac Iberia",
+            "source": "soury-avac",
+            "tier": "official_document"
+          },
+          "budget_history": [
+            {
+              "date": "2019-05",
+              "amount": 1700000,
+              "label": "Contract awarded",
+              "src": "soury-avac"
+            }
+          ],
+          "milestones": [
+            {
+              "name": "Contract awarded",
+              "planned": null,
+              "actual": "2019-05-01"
+            },
+            {
+              "name": "Upgrade complete",
+              "planned": "2019-11 (six months, as announced)",
+              "actual": null,
+              "note": "No completion announcement found. Seven years on."
+            }
+          ],
+          "promised": "'At least 30 more years of automated waste collection.'",
+          "src": "soury-avac"
+        }
+      ],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_published"
+      },
+      "attributes": {
+        "pipe_length": {
+          "value": "~3 miles (nearly 5 km) of buried pipe",
+          "source": "envac-50",
+          "tier": "official_document"
+        },
+        "pipe_diameter": {
+          "value": "20 inches",
+          "source": "soury-avac",
+          "tier": "official_document"
+        },
+        "annual_capacity": {
+          "value": "~2,555 tonnes of waste per year",
+          "source": "envac-50",
+          "tier": "official_document"
+        },
+        "throughput": {
+          "value": "~5 tons of trash per day, moving at ~60 mph",
+          "source": "npr-avac",
+          "tier": "single_source"
+        },
+        "designed_for": {
+          "value": "The four original WIRE buildings: Westview, Island House, Rivercross, Eastwood (now Roosevelt Landings)",
+          "source": "rilighthouse",
+          "tier": "single_source"
+        },
+        "currently_serving": {
+          "value": "The four original buildings plus six in Manhattan Park, nine in Southtown, and The Octagon. Island population has roughly doubled.",
+          "source": "rilighthouse",
+          "tier": "single_source"
+        },
+        "capacity_evaluation": {
+          "status": "unknown",
+          "reason": "not_found",
+          "note": "'There is no public record showing whether the system was ever evaluated for that kind of expansion.' \u2014 journalist David Stone, quoted in RI Lighthouse."
+        },
+        "peer_systems": {
+          "value": "One of only two city-scale AVAC systems in the US. The other serves Walt Disney World.",
+          "source": "rioc-status",
+          "tier": "official_document"
+        }
+      },
+      "connected": [
+        "cop:obj:us-ny-36061:westview",
+        "cop:obj:us-ny-36061:island-house",
+        "cop:obj:us-ny-36061:rivercross",
+        "cop:obj:us-ny-36061:roosevelt-landings",
+        "cop:obj:us-ny-36061:octagon"
+      ],
+      "history": [
+        {
+          "t": "1970",
+          "what": "Pneumatic collection for Welfare Island made public in the 'Interim Report' exhibition.",
+          "src": "fasttrash"
+        },
+        {
+          "t": "1975",
+          "what": "Installed. The second AVAC in the United States, after Walt Disney World, and the first at urban scale.",
+          "src": "rioc-status"
+        },
+        {
+          "t": "2010-2011",
+          "what": "During the winter blizzards, when NYC garbage trucks are redeployed to plough snow and refuse sits uncollected on city sidewalks for up to three weeks, Roosevelt Island is the only sanitation district in New York with uninterrupted collection.",
+          "src": "soury-avac"
+        },
+        {
+          "t": "2012",
+          "what": "Continues operating through Hurricane Sandy.",
+          "src": "soury-avac"
+        },
+        {
+          "t": "2019-05-01",
+          "what": "RIOC awards Envac Iberia a $1.7M modernization contract. Announced as a six-month project promising 30 more years of service.",
+          "src": "soury-avac"
+        },
+        {
+          "t": "2025-01-14",
+          "what": "Last official RIOC update on AVAC found in the public record.",
+          "src": "ridaily-avac"
+        },
+        {
+          "t": "2025-04",
+          "what": "Local press reports repeated failures and 'minimal' communication from RIOC since January.",
+          "src": "ridaily-avac"
+        }
+      ],
+      "flag": "Built in 1975 for four buildings. The island has since roughly doubled and the same vacuum backbone now serves twenty. No public record shows the system was ever evaluated for that load. A $1.7M upgrade was announced in 2019 as a six-month job; there is no completion notice seven years later.",
+      "tier": 1,
+      "revision": {
+        "id": "824dc86be86f",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:ri-bridge",
+      "type": "bridge",
+      "name": "Roosevelt Island Bridge",
+      "also": [
+        "Welfare Island Bridge (1955\u20131973)"
+      ],
+      "geom": {
+        "kind": "line",
+        "pts": [
+          [
+            40.763448,
+            -73.947226
+          ],
+          [
+            40.762679,
+            -73.945348
+          ],
+          [
+            40.761921,
+            -73.943597
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        },
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36081:astoria",
+          "note": "The Queens end. The bridge is in two boroughs."
+        },
+        {
+          "rel": "crosses",
+          "target": "cop:obj:us-ny-36061:east-river-east-channel"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "value": "in_service",
+          "source": "nycdot-bridges",
+          "tier": "authoritative"
+        },
+        "construction_began": {
+          "value": "1952-03-17",
+          "source": "wp-bridge",
+          "tier": "cross_referenced"
+        },
+        "opened": {
+          "value": "1955-05-18",
+          "source": "wp-bridge",
+          "tier": "cross_referenced"
+        },
+        "renamed": {
+          "value": "1973 \u2014 from Welfare Island Bridge",
+          "source": "wp-bridge",
+          "tier": "cross_referenced"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "value": "City of New York",
+          "source": "nycdot-bridges",
+          "tier": "authoritative"
+        },
+        "tenure": {
+          "value": "public",
+          "source": "nycdot-bridges",
+          "tier": "authoritative"
+        }
+      },
+      "responsibility": {
+        "maintainer": {
+          "value": "NYC Department of Transportation",
+          "source": "nycdot-bridges",
+          "tier": "authoritative"
+        },
+        "note": "Note the boundary: NYC DOT owns and maintains the only road onto an island that a New York STATE corporation otherwise runs."
+      },
+      "finance": {
+        "construction_cost": {
+          "value": {
+            "amount": 6500000,
+            "currency": "USD",
+            "year": 1955
+          },
+          "source": "wp-bridge",
+          "tier": "cross_referenced",
+          "note": "There was opposition in the City Council at the time over whether the traffic justified the cost."
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_published",
+          "note": "NYC DOT publishes an annual Bridges & Tunnels Condition Report but does not break out per-bridge maintenance spend in a machine-readable form."
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_found",
+        "note": "NYC DOT publishes an annual Bridges & Tunnels Condition Report. The per-structure condition rating for this bridge was not retrievable without the PDF. See GAPS.md."
+      },
+      "attributes": {
+        "bridge_type": {
+          "value": "Tower-drive vertical lift",
+          "source": "nycdot-bridges",
+          "tier": "authoritative"
+        },
+        "main_span": {
+          "value": "418 ft (127 m)",
+          "source": "nycdot-bridges",
+          "tier": "authoritative"
+        },
+        "total_length": {
+          "value": "2,877 ft (877 m) including approaches",
+          "source": "wp-bridge",
+          "tier": "cross_referenced"
+        },
+        "tower_height": {
+          "value": "170 ft",
+          "source": "structurae",
+          "tier": "single_source"
+        },
+        "clearance_closed": {
+          "value": "40 ft above mean high water",
+          "source": "structurae",
+          "tier": "single_source"
+        },
+        "clearance_open": {
+          "value": "100 ft above mean high water",
+          "source": "wp-bridge",
+          "tier": "cross_referenced"
+        },
+        "lift_cables": {
+          "value": "48 cables, each with a 200-ton breaking strength",
+          "source": "structurae",
+          "tier": "single_source"
+        },
+        "lifts_per_year": {
+          "value": "4\u20135, mostly during the UN General Assembly in September",
+          "source": "wp-bridge",
+          "tier": "single_source"
+        },
+        "significance": {
+          "value": "The only vehicular access to Roosevelt Island.",
+          "source": "nycdot-bridges",
+          "tier": "authoritative"
+        }
+      },
+      "connected": [
+        "cop:obj:us-ny-36061:motorgate",
+        "cop:obj:us-ny-36061:main-street"
+      ],
+      "history": [
+        {
+          "t": "1930",
+          "what": "Before the bridge, vehicles reach the island only by a four-cab elevator from the Queensboro Bridge.",
+          "src": "structurae"
+        },
+        {
+          "t": "1952-03-17",
+          "what": "Construction begins, over City Council objections about the $6.5M cost.",
+          "src": "structurae"
+        },
+        {
+          "t": "1955-05-18",
+          "what": "Opens as the Welfare Island Bridge.",
+          "src": "wp-bridge"
+        },
+        {
+          "t": "1970",
+          "what": "The Queensboro Bridge elevator is demolished.",
+          "src": "wp-bridge"
+        },
+        {
+          "t": "1973",
+          "what": "Renamed the Roosevelt Island Bridge.",
+          "src": "wp-bridge"
+        },
+        {
+          "t": "2001",
+          "what": "NYC DOT considers converting it to a fixed bridge to cut maintenance cost. It does not happen; no public record found of why.",
+          "src": "wp-bridge"
+        }
+      ],
+      "flag": "A single point of failure: one 1955 lift bridge is the only way to drive onto an island of 12,000 people. No published condition rating was retrievable.",
+      "tier": 1,
+      "revision": {
+        "id": "e741086527ee",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:cornell-tech",
+      "type": "campus",
+      "name": "Cornell Tech Campus",
+      "also": [
+        "Cornell NYC Tech"
+      ],
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.753411,
+            -73.957626
+          ],
+          [
+            40.756368,
+            -73.955623
+          ],
+          [
+            40.755463,
+            -73.953411
+          ],
+          [
+            40.753515,
+            -73.95464
+          ],
+          [
+            40.752812,
+            -73.956166
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "value": "in_service \u2014 phased build-out continuing",
+          "source": "wp-cornell",
+          "tier": "official_document"
+        },
+        "site_selected": {
+          "value": "2011 \u2014 winner of the Bloomberg administration's Applied Sciences Competition",
+          "source": "cornell-open",
+          "tier": "official_document"
+        },
+        "construction_began": {
+          "value": "2015",
+          "source": "wp-cornell",
+          "tier": "cross_referenced"
+        },
+        "phase_1_opened": {
+          "value": "2017-09-13",
+          "source": "cornell-open",
+          "tier": "authoritative"
+        },
+        "full_buildout": {
+          "status": "contested",
+          "positions": [
+            {
+              "value": "12 acres by 2037",
+              "src": "wp-cornell"
+            },
+            {
+              "value": "final phase scheduled for 2045",
+              "src": "wp-ri"
+            }
+          ],
+          "note": "Two different completion horizons, eight years apart."
+        }
+      },
+      "ownership": {
+        "owner": {
+          "value": "Cornell University (with Technion \u2014 Israel Institute of Technology)",
+          "source": "wp-cornell",
+          "tier": "authoritative"
+        },
+        "tenure": {
+          "value": "private institution on city-owned land",
+          "source": "wp-cornell",
+          "tier": "cross_referenced",
+          "note": "SCHEMA PROBLEM: is this a public object or a private one? See SCHEMA_NOTES.md."
+        },
+        "land": {
+          "value": "Site of the former Goldwater Memorial Hospital, a city facility that closed in 2013 and was demolished.",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        }
+      },
+      "responsibility": {
+        "operator": {
+          "value": "Cornell University",
+          "source": "wp-cornell",
+          "tier": "authoritative"
+        },
+        "land_agreement": {
+          "status": "unknown",
+          "reason": "not_found",
+          "note": "The city\u2013Cornell agreement governing the land is referenced everywhere and published nowhere we could find."
+        }
+      },
+      "finance": {
+        "construction_cost": {
+          "value": {
+            "amount": 2000000000,
+            "currency": "USD",
+            "year": 2017
+          },
+          "source": "constrdive",
+          "tier": "cross_referenced",
+          "note": "$2 billion is the figure used consistently by the city, the press and Cornell. What is NOT public is the breakdown: how much is public money, how much philanthropic, how much Cornell's own."
+        },
+        "public_contribution": {
+          "status": "unknown",
+          "reason": "not_found",
+          "note": "The city's contribution \u2014 in land value, tax treatment, and infrastructure \u2014 is not stated in any source found. The land was city-owned and is worth a great deal."
+        },
+        "largest_gift": {
+          "value": "$350M from Atlantic Philanthropies (Charles Feeney)",
+          "source": "wp-cornell",
+          "tier": "cross_referenced"
+        },
+        "promised_benefit": {
+          "value": "The winning bid promised 28,000 jobs, 600 incubated companies, $23bn in economic benefit and $1.4bn in taxes over 30 years.",
+          "source": "wp-cornell",
+          "tier": "single_source",
+          "note": "No public accounting against these promises was found. The bid is nine years old."
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_applicable"
+      },
+      "attributes": {
+        "site_area": {
+          "status": "contested",
+          "positions": [
+            {
+              "value": "12.4 acres (master plan)",
+              "src": "som"
+            },
+            {
+              "value": "11 acres",
+              "src": "wp-ri"
+            },
+            {
+              "value": "12 acres",
+              "src": "constrdive"
+            }
+          ]
+        },
+        "phase_1_area": {
+          "value": "5 acres, opened 2017",
+          "source": "wp-cornell",
+          "tier": "cross_referenced"
+        },
+        "planned_floor_area": {
+          "value": "~2 million sq ft at full build-out",
+          "source": "som",
+          "tier": "official_document"
+        },
+        "master_architect": {
+          "value": "SOM (Skidmore, Owings & Merrill), with James Corner Field Operations",
+          "source": "som",
+          "tier": "authoritative"
+        },
+        "bloomberg_center": {
+          "value": "4 storeys, 160,000 sq ft; designed as one of the largest net-zero-energy buildings in the country",
+          "source": "constrdive",
+          "tier": "cross_referenced"
+        }
+      },
+      "connected": [
+        "cop:obj:us-ny-36061:tram",
+        "cop:obj:us-ny-36061:southpoint-park"
+      ],
+      "history": [
+        {
+          "t": "2011",
+          "what": "Cornell/Technion win the city's Applied Sciences Competition. Stanford withdraws.",
+          "src": "wp-cornell"
+        },
+        {
+          "t": "2013",
+          "what": "Goldwater Memorial Hospital \u2014 a public hospital \u2014 closes to make way for the campus.",
+          "src": "wp-ri"
+        },
+        {
+          "t": "2015",
+          "what": "Construction begins.",
+          "src": "wp-cornell"
+        },
+        {
+          "t": "2017-09-13",
+          "what": "Phase 1 opens. Attended by the Governor, the Mayor, and the former Mayor who initiated it.",
+          "src": "cornell-open"
+        }
+      ],
+      "flag": "A public hospital was demolished to build a private university on public land, for $2 billion, against promises of 28,000 jobs. The promises are public. Any accounting against them is not.",
+      "tier": 1,
+      "revision": {
+        "id": "a5bf33d2c9af",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:four-freedoms-park",
+      "type": "park",
+      "name": "Franklin D. Roosevelt Four Freedoms Park",
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.749457,
+            -73.958696
+          ],
+          [
+            40.750196,
+            -73.959004
+          ],
+          [
+            40.751239,
+            -73.958557
+          ],
+          [
+            40.750764,
+            -73.9569
+          ],
+          [
+            40.749752,
+            -73.957919
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "value": "open",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        },
+        "designed": {
+          "value": "1974, by Louis Kahn",
+          "source": "wp-ri",
+          "tier": "authoritative",
+          "note": "Kahn died in 1974. The park was built 38 years later."
+        },
+        "groundbreaking": {
+          "value": "2009-05-28",
+          "source": "wp-smallpox",
+          "tier": "cross_referenced"
+        },
+        "opened": {
+          "value": "2012",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "value": "New York State Park",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        },
+        "tenure": {
+          "value": "public",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        }
+      },
+      "responsibility": {
+        "operator": {
+          "value": "Franklin D. Roosevelt Four Freedoms Park, LLC",
+          "source": "almanack",
+          "tier": "single_source",
+          "note": "A separate LLC operates a state park. Its governance and finances were not found."
+        }
+      },
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_found",
+          "note": "No construction cost for the park was found in any public source. It is a state park built by an LLC after a 38-year gap."
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_found"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_applicable"
+      },
+      "attributes": {
+        "area": {
+          "value": "4 acres (1.6 ha)",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        },
+        "architect": {
+          "value": "Louis Kahn",
+          "source": "wp-ri",
+          "tier": "authoritative"
+        },
+        "form": {
+          "value": "Two converging rows of trees leading to a granite 'room' at the island's southern tip.",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        }
+      },
+      "connected": [
+        "cop:obj:us-ny-36061:southpoint-park",
+        "cop:obj:us-ny-36061:renwick-ruin"
+      ],
+      "history": [
+        {
+          "t": "1974",
+          "what": "Louis Kahn completes the design. He dies the same year. The project stalls for a generation.",
+          "src": "wp-ri"
+        },
+        {
+          "t": "2009-05-28",
+          "what": "Ground broken, 35 years later.",
+          "src": "wp-smallpox"
+        },
+        {
+          "t": "2012",
+          "what": "Opens.",
+          "src": "wp-ri"
+        }
+      ],
+      "flag": null,
+      "tier": 1,
+      "revision": {
+        "id": "93eb9d4be005",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:southpoint-park",
+      "type": "park",
+      "name": "Southpoint Park",
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.751405,
+            -73.958465
+          ],
+          [
+            40.754421,
+            -73.956851
+          ],
+          [
+            40.753455,
+            -73.954494
+          ],
+          [
+            40.750764,
+            -73.9569
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "value": "open",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        },
+        "reopened": {
+          "value": "2011",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "value": "RIOC",
+          "source": "rioc-status",
+          "tier": "official_document"
+        },
+        "tenure": {
+          "value": "public",
+          "source": "rioc-status",
+          "tier": "official_document"
+        }
+      },
+      "responsibility": {
+        "maintainer": {
+          "value": "RIOC",
+          "source": "rioc-status",
+          "tier": "official_document"
+        }
+      },
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_found"
+        },
+        "shoreline_restoration_cost": {
+          "status": "unknown",
+          "reason": "not_published",
+          "note": "RIOC publicised the Southpoint Park Shoreline Restoration as an award-winning project (ACEC New York, 2024 Platinum). The award is public. The cost is not."
+        }
+      },
+      "projects": [
+        {
+          "id": "cop:proj:us-ny-36061:southpoint-shoreline",
+          "title": "Southpoint Park Shoreline Restoration",
+          "status": "completed",
+          "contractor": {
+            "value": "Langan (design)",
+            "source": "rioc-news",
+            "tier": "official_document"
+          },
+          "budget_history": [],
+          "milestones": [
+            {
+              "name": "ACEC New York Engineering Excellence Platinum Award",
+              "planned": null,
+              "actual": "2024"
+            }
+          ],
+          "note": "RIOC's own account: the seawall 'was failing'.",
+          "src": "rioc-news"
+        }
+      ],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_applicable"
+      },
+      "attributes": {
+        "area": {
+          "value": "7 acres (2.8 ha)",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        },
+        "contains": {
+          "value": "Strecker Memorial Laboratory and the Smallpox Hospital ruin",
+          "source": "wp-ri",
+          "tier": "cross_referenced"
+        }
+      },
+      "connected": [
+        "cop:obj:us-ny-36061:renwick-ruin",
+        "cop:obj:us-ny-36061:four-freedoms-park"
+      ],
+      "history": [
+        {
+          "t": "2011",
+          "what": "Reopens, redesigned alongside the Four Freedoms Park works.",
+          "src": "wp-ri"
+        }
+      ],
+      "flag": "A press release for the award. No figure for the work.",
+      "tier": 1,
+      "revision": {
+        "id": "3ded7a4c6307",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:blackwell-house",
+      "type": "landmark_building",
+      "name": "Blackwell House",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.760764,
+            -73.951595
+          ],
+          [
+            40.761049,
+            -73.951392
+          ],
+          [
+            40.760904,
+            -73.951037
+          ],
+          [
+            40.760619,
+            -73.95124
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "NYC landmark. Restored by RIOC; restoration cost not researched.",
+      "revision": {
+        "id": "48b2ed9fcd3e",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:blackwell-lighthouse",
+      "type": "lighthouse",
+      "name": "Blackwell Island Light",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.771266,
+            -73.943424
+          ],
+          [
+            40.771424,
+            -73.943312
+          ],
+          [
+            40.771339,
+            -73.943103
+          ],
+          [
+            40.77118,
+            -73.943216
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "NYC landmark, 1872. Restored by RIOC; cost not researched.",
+      "revision": {
+        "id": "064e7708a48f",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:strecker-lab",
+      "type": "landmark_building",
+      "name": "Strecker Memorial Laboratory",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.753069,
+            -73.955794
+          ],
+          [
+            40.753274,
+            -73.955647
+          ],
+          [
+            40.753137,
+            -73.955314
+          ],
+          [
+            40.752932,
+            -73.95546
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "NYC landmark. Now an MTA power conversion substation \u2014 a landmark repurposed as infrastructure.",
+      "revision": {
+        "id": "86ccdebb8b59",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:chapel-good-shepherd",
+      "type": "landmark_building",
+      "name": "Chapel of the Good Shepherd",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.760339,
+            -73.951953
+          ],
+          [
+            40.760703,
+            -73.951693
+          ],
+          [
+            40.760532,
+            -73.951276
+          ],
+          [
+            40.760168,
+            -73.951535
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "NYC landmark, 1889. Now the Good Shepherd Community Center \u2014 where the RIOC board meets.",
+      "revision": {
+        "id": "dde628b5458d",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:octagon",
+      "type": "residential",
+      "name": "The Octagon",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.767263,
+            -73.947414
+          ],
+          [
+            40.767784,
+            -73.947042
+          ],
+          [
+            40.767502,
+            -73.946354
+          ],
+          [
+            40.766981,
+            -73.946726
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "Former Lunatic Asylum rotunda, 1839. NYC landmark, converted to housing by Becker+Becker.",
+      "revision": {
+        "id": "00017c5cb619",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:westview",
+      "type": "residential",
+      "name": "Westview",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.762792,
+            -73.95101
+          ],
+          [
+            40.763519,
+            -73.950491
+          ],
+          [
+            40.763263,
+            -73.949865
+          ],
+          [
+            40.762536,
+            -73.950384
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "One of the four original WIRE buildings. Mitchell-Lama.",
+      "revision": {
+        "id": "9412db52eeb7",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:island-house",
+      "type": "residential",
+      "name": "Island House",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.761946,
+            -73.951587
+          ],
+          [
+            40.762641,
+            -73.951091
+          ],
+          [
+            40.762385,
+            -73.950465
+          ],
+          [
+            40.76169,
+            -73.950961
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "One of the four original WIRE buildings.",
+      "revision": {
+        "id": "430970be2357",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:rivercross",
+      "type": "residential",
+      "name": "Rivercross",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.761226,
+            -73.952074
+          ],
+          [
+            40.761827,
+            -73.951645
+          ],
+          [
+            40.76157,
+            -73.95102
+          ],
+          [
+            40.76097,
+            -73.951448
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "One of the four original WIRE buildings.",
+      "revision": {
+        "id": "647d24694da1",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:roosevelt-landings",
+      "type": "residential",
+      "name": "Roosevelt Landings",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.760689,
+            -73.950462
+          ],
+          [
+            40.762664,
+            -73.949052
+          ],
+          [
+            40.762331,
+            -73.948239
+          ],
+          [
+            40.761357,
+            -73.948853
+          ],
+          [
+            40.760407,
+            -73.949774
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "Formerly Eastwood. One of the four original WIRE buildings.",
+      "revision": {
+        "id": "89288b73784a",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:manhattan-park",
+      "type": "residential",
+      "name": "Manhattan Park",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.765044,
+            -73.949376
+          ],
+          [
+            40.767098,
+            -73.94791
+          ],
+          [
+            40.766098,
+            -73.945468
+          ],
+          [
+            40.764069,
+            -73.946998
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "Six buildings. Northtown II, completed 1989.",
+      "revision": {
+        "id": "d05f2e2de6eb",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:southtown",
+      "type": "residential",
+      "name": "Southtown (Riverwalk)",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.756992,
+            -73.955151
+          ],
+          [
+            40.760232,
+            -73.952838
+          ],
+          [
+            40.759283,
+            -73.950522
+          ],
+          [
+            40.756197,
+            -73.95321
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "Nine buildings, developed in the 2000s\u20132010s.",
+      "revision": {
+        "id": "2a1733197ae4",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:ri-subway",
+      "type": "subway_station",
+      "name": "Roosevelt Island Station (F)",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.758869,
+            -73.953002
+          ],
+          [
+            40.759249,
+            -73.952731
+          ],
+          [
+            40.759078,
+            -73.952314
+          ],
+          [
+            40.758698,
+            -73.952584
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "MTA. One of the deepest stations in the system.",
+      "revision": {
+        "id": "00071d27715d",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:motorgate",
+      "type": "parking",
+      "name": "Motorgate Garage",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.763442,
+            -73.948308
+          ],
+          [
+            40.764137,
+            -73.947812
+          ],
+          [
+            40.763787,
+            -73.946957
+          ],
+          [
+            40.763092,
+            -73.947453
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "RIOC. The island's main garage, at the bridge landing.",
+      "revision": {
+        "id": "357611b7d622",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:main-street",
+      "type": "street",
+      "name": "Main Street",
+      "tier": 2,
+      "geom": {
+        "kind": "line",
+        "pts": [
+          [
+            40.75668,
+            -73.95389
+          ],
+          [
+            40.759042,
+            -73.952177
+          ],
+          [
+            40.762212,
+            -73.949942
+          ],
+          [
+            40.765364,
+            -73.947665
+          ],
+          [
+            40.76791,
+            -73.945901
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "The island's spine. RIOC-maintained.",
+      "revision": {
+        "id": "11e50d676370",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:tram-plaza",
+      "type": "public_space",
+      "name": "Tramway Plaza",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.757353,
+            -73.954785
+          ],
+          [
+            40.757906,
+            -73.95439
+          ],
+          [
+            40.75765,
+            -73.953764
+          ],
+          [
+            40.757097,
+            -73.954159
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "RIOC.",
+      "revision": {
+        "id": "d72251f24bb0",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:lighthouse-park",
+      "type": "park",
+      "name": "Lighthouse Park",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.769964,
+            -73.945432
+          ],
+          [
+            40.771668,
+            -73.94311
+          ],
+          [
+            40.771583,
+            -73.942902
+          ],
+          [
+            40.769195,
+            -73.943554
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "RIOC. Northern tip.",
+      "revision": {
+        "id": "71a640570919",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:octagon-park",
+      "type": "park",
+      "name": "Octagon Park",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.767151,
+            -73.947791
+          ],
+          [
+            40.769084,
+            -73.946276
+          ],
+          [
+            40.768452,
+            -73.944732
+          ],
+          [
+            40.766536,
+            -73.946288
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "RIOC. 15 acres.",
+      "revision": {
+        "id": "e5767dc53c84",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:ps-is-217",
+      "type": "school",
+      "name": "PS/IS 217 Roosevelt Island School",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.759687,
+            -73.951258
+          ],
+          [
+            40.760256,
+            -73.950852
+          ],
+          [
+            40.759983,
+            -73.950185
+          ],
+          [
+            40.759414,
+            -73.950591
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "NYC Department of Education. The island's only public school.",
+      "revision": {
+        "id": "d3e313ccbab1",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:coler",
+      "type": "hospital",
+      "name": "Coler Hospital",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.767487,
+            -73.945367
+          ],
+          [
+            40.769225,
+            -73.944126
+          ],
+          [
+            40.768969,
+            -73.9435
+          ],
+          [
+            40.767205,
+            -73.944679
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "NYC Health + Hospitals. Long-term care.",
+      "revision": {
+        "id": "195dc37f8518",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:sportspark",
+      "type": "recreation",
+      "name": "Sportspark",
+      "tier": 2,
+      "geom": {
+        "kind": "poly",
+        "pts": [
+          [
+            40.757305,
+            -73.952824
+          ],
+          [
+            40.757701,
+            -73.952542
+          ],
+          [
+            40.757478,
+            -73.951999
+          ],
+          [
+            40.757083,
+            -73.952281
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "RIOC. Pool and fitness facility.",
+      "revision": {
+        "id": "3652b692a9cd",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:seawall",
+      "type": "coastal_defence",
+      "name": "The Seawall",
+      "tier": 2,
+      "geom": {
+        "kind": "line",
+        "pts": [
+          [
+            40.749551,
+            -73.958925
+          ],
+          [
+            40.750312,
+            -73.958787
+          ],
+          [
+            40.751256,
+            -73.958598
+          ],
+          [
+            40.752473,
+            -73.95808
+          ],
+          [
+            40.753955,
+            -73.957211
+          ],
+          [
+            40.75557,
+            -73.956166
+          ],
+          [
+            40.757167,
+            -73.95508
+          ],
+          [
+            40.758765,
+            -73.953993
+          ],
+          [
+            40.760362,
+            -73.952907
+          ],
+          [
+            40.761951,
+            -73.951799
+          ],
+          [
+            40.763523,
+            -73.95065
+          ],
+          [
+            40.765086,
+            -73.949481
+          ],
+          [
+            40.766641,
+            -73.94829
+          ],
+          [
+            40.76817,
+            -73.947036
+          ],
+          [
+            40.769665,
+            -73.9457
+          ],
+          [
+            40.770722,
+            -73.944541
+          ],
+          [
+            40.771455,
+            -73.943586
+          ],
+          [
+            40.771668,
+            -73.94311
+          ],
+          [
+            40.771583,
+            -73.942902
+          ],
+          [
+            40.771164,
+            -73.942877
+          ],
+          [
+            40.770158,
+            -73.943164
+          ],
+          [
+            40.768845,
+            -73.943697
+          ],
+          [
+            40.767179,
+            -73.944616
+          ],
+          [
+            40.765547,
+            -73.945619
+          ],
+          [
+            40.763941,
+            -73.946685
+          ],
+          [
+            40.762344,
+            -73.947771
+          ],
+          [
+            40.760755,
+            -73.948878
+          ],
+          [
+            40.759183,
+            -73.950027
+          ],
+          [
+            40.75762,
+            -73.951197
+          ],
+          [
+            40.756056,
+            -73.952367
+          ],
+          [
+            40.754493,
+            -73.953537
+          ],
+          [
+            40.752947,
+            -73.954749
+          ],
+          [
+            40.751584,
+            -73.95591
+          ],
+          [
+            40.750589,
+            -73.956971
+          ],
+          [
+            40.749953,
+            -73.957911
+          ],
+          [
+            40.749449,
+            -73.958675
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "RIOC. Encircles the island. Sections reported as failing.",
+      "revision": {
+        "id": "f2de32d30c89",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    },
+    {
+      "id": "cop:obj:us-ny-36061:promenade",
+      "type": "public_space",
+      "name": "Waterfront Promenade",
+      "tier": 2,
+      "geom": {
+        "kind": "line",
+        "pts": [
+          [
+            40.751696,
+            -73.958176
+          ],
+          [
+            40.757116,
+            -73.954954
+          ],
+          [
+            40.7619,
+            -73.951674
+          ],
+          [
+            40.766615,
+            -73.948227
+          ],
+          [
+            40.770353,
+            -73.944885
+          ],
+          [
+            40.771412,
+            -73.943482
+          ],
+          [
+            40.769772,
+            -73.943466
+          ],
+          [
+            40.765599,
+            -73.945744
+          ],
+          [
+            40.760806,
+            -73.949004
+          ],
+          [
+            40.756108,
+            -73.952492
+          ],
+          [
+            40.751589,
+            -73.956419
+          ]
+        ],
+        "confidence": "approximate"
+      },
+      "containment": [
+        {
+          "rel": "within",
+          "target": "cop:dist:us-ny-36061:roosevelt-island"
+        }
+      ],
+      "lifecycle": {
+        "status": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "ownership": {
+        "owner": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "responsibility": {},
+      "finance": {
+        "construction_cost": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        },
+        "annual_maintenance": {
+          "status": "unknown",
+          "reason": "not_yet_researched"
+        }
+      },
+      "projects": [],
+      "inspections": {
+        "status": "unknown",
+        "reason": "not_yet_researched"
+      },
+      "attributes": {},
+      "connected": [],
+      "history": [],
+      "flag": null,
+      "stub_note": "RIOC. Circles the island.",
+      "revision": {
+        "id": "4aef65be5a4d",
+        "parent": null,
+        "valid_from": "2026-07-13",
+        "recorded_at": "2026-07-13T00:00:00Z",
+        "author": "cop:ingest:manual-pilot-001",
+        "note": "Genesis revision. Manually compiled from public sources. Tier: mixed. No automated adapter exists yet."
+      },
+      "retrieved": "2026-07-13"
+    }
+  ],
+  "institutions": [
+    {
+      "id": "cop:inst:us-ny-36061:rioc",
+      "name": "Roosevelt Island Operating Corporation",
+      "short": "RIOC",
+      "type": "state_public_benefit_corporation",
+      "mandate": {
+        "value": "To plan, design, develop, operate and maintain Roosevelt Island.",
+        "source": "wp-rioc",
+        "tier": "official_document"
+      },
+      "legal_basis": {
+        "value": "Created by the New York State Legislature in 1984 (Chapter 899). Amended 2002 (Chapter 493), which moved the NYS Homes & Community Renewal Commissioner from chief executive to board chair.",
+        "source": "nysa-rioc",
+        "tier": "authoritative"
+      },
+      "jurisdiction": {
+        "value": "Roosevelt Island \u2014 but not exclusively. NYPD remains the primary police agency; DSNY, MTA, NYC DOT and NYC H+H all retain authority over parts of the island.",
+        "source": "wp-rioc",
+        "tier": "official_document"
+      },
+      "governing_document": {
+        "value": "The 1969 General Development Plan, which accompanied the ground lease between New York City and New York State.",
+        "source": "almanack",
+        "tier": "official_document"
+      },
+      "budget": [
+        {
+          "year": "2017",
+          "figure": "$26.09M operating expenses; 175 staff",
+          "src": "wp-rioc",
+          "tier": "single_source"
+        },
+        {
+          "year": "2025\u201326",
+          "figure": "$39.3M projected operating revenue (+1.1%)",
+          "src": "wp-rioc",
+          "tier": "single_source"
+        }
+      ],
+      "funding": {
+        "value": "Ground-lease rents from the island's residential developments, residential service fees, and transport/parking fees. Reported as operating without direct state or municipal subsidy.",
+        "source": "wp-rioc",
+        "tier": "single_source"
+      },
+      "responsible_for": [
+        "cop:obj:us-ny-36061:tram",
+        "cop:obj:us-ny-36061:avac",
+        "cop:obj:us-ny-36061:renwick-ruin",
+        "cop:obj:us-ny-36061:southpoint-park",
+        "cop:obj:us-ny-36061:motorgate",
+        "cop:obj:us-ny-36061:seawall"
+      ],
+      "flag": "A New York STATE corporation runs an island that is, for every other purpose \u2014 courts, elections, the post office \u2014 in New York CITY. Its board is appointed by the Governor. Nobody on Roosevelt Island elects it."
+    },
+    {
+      "id": "cop:inst:us-ny:nyc-dot",
+      "name": "New York City Department of Transportation",
+      "short": "NYC DOT",
+      "type": "city_agency",
+      "mandate": {
+        "value": "Owns and maintains the Roosevelt Island Bridge.",
+        "source": "nycdot-bridges",
+        "tier": "authoritative"
+      },
+      "legal_basis": {
+        "status": "unknown",
+        "reason": "not_researched"
+      },
+      "jurisdiction": {
+        "value": "The bridge only. A city agency's asset inside a state corporation's territory.",
+        "source": "nycdot-bridges",
+        "tier": "authoritative"
+      },
+      "governing_document": {
+        "status": "unknown",
+        "reason": "not_researched"
+      },
+      "budget": [],
+      "funding": {
+        "status": "unknown",
+        "reason": "not_researched"
+      },
+      "responsible_for": [
+        "cop:obj:us-ny-36061:ri-bridge"
+      ],
+      "flag": null
+    },
+    {
+      "id": "cop:inst:us-ny:dsny",
+      "name": "New York City Department of Sanitation",
+      "short": "DSNY",
+      "type": "city_agency",
+      "mandate": {
+        "value": "Described in multiple sources as the operator of AVAC for 40+ years \u2014 a system RIOC owns.",
+        "source": "soury-avac",
+        "tier": "official_document"
+      },
+      "legal_basis": {
+        "status": "unknown",
+        "reason": "not_researched"
+      },
+      "jurisdiction": {
+        "value": "Contested. See the AVAC passport.",
+        "source": "ridaily-avac",
+        "tier": "contested"
+      },
+      "governing_document": {
+        "status": "unknown",
+        "reason": "not_found",
+        "note": "No published agreement between RIOC and DSNY governing AVAC operation was found."
+      },
+      "budget": [],
+      "funding": {
+        "status": "unknown",
+        "reason": "not_researched"
+      },
+      "responsible_for": [
+        "cop:obj:us-ny-36061:avac"
+      ],
+      "flag": "DSNY operates a system it does not own, under an agreement that is not published."
+    },
+    {
+      "id": "cop:inst:us-ny:mta",
+      "name": "Metropolitan Transportation Authority",
+      "short": "MTA",
+      "type": "state_authority",
+      "mandate": {
+        "value": "Operates the Roosevelt Island subway station (F). Collects the tram fare via OMNY. Does NOT operate the tram.",
+        "source": "wp-tram",
+        "tier": "official_document"
+      },
+      "legal_basis": {
+        "status": "unknown",
+        "reason": "not_researched"
+      },
+      "jurisdiction": {
+        "value": "The subway station; the fare system; the Strecker Lab substation.",
+        "source": "wp-ri",
+        "tier": "cross_referenced"
+      },
+      "governing_document": {
+        "status": "unknown",
+        "reason": "not_researched"
+      },
+      "budget": [],
+      "funding": {
+        "status": "unknown",
+        "reason": "not_researched"
+      },
+      "responsible_for": [
+        "cop:obj:us-ny-36061:ri-subway",
+        "cop:obj:us-ny-36061:strecker-lab"
+      ],
+      "flag": "A common error: the MTA does not run the tram. It takes the fare."
+    },
+    {
+      "id": "cop:org:fr:leitner-poma",
+      "name": "Leitner-Poma of America (POMA Group)",
+      "short": "Leitner-Poma",
+      "type": "private_contractor",
+      "mandate": {
+        "value": "Design-build contractor for the 2010 tram modernization; operator of the tram under contract to RIOC since 2010, renewed 2019.",
+        "source": "poma",
+        "tier": "official_document"
+      },
+      "legal_basis": {
+        "status": "unknown",
+        "reason": "not_applicable"
+      },
+      "jurisdiction": {
+        "value": "Operates a piece of American public transit infrastructure under a renewable commercial contract. The contract is not published.",
+        "source": "poma",
+        "tier": "official_document"
+      },
+      "governing_document": {
+        "status": "unknown",
+        "reason": "not_found",
+        "note": "The RIOC\u2013Leitner-Poma operating agreement was not found in public sources."
+      },
+      "budget": [],
+      "funding": {
+        "status": "unknown",
+        "reason": "not_applicable"
+      },
+      "responsible_for": [
+        "cop:obj:us-ny-36061:tram"
+      ],
+      "flag": "A French cable-car manufacturer operates New York's aerial tramway under a contract nobody outside RIOC has read."
+    },
+    {
+      "id": "cop:org:se:envac",
+      "name": "Envac (Envac Iberia)",
+      "short": "Envac",
+      "type": "private_contractor",
+      "mandate": {
+        "value": "Installed AVAC in 1975. Awarded a $1.7M modernization contract by RIOC in 2019.",
+        "source": "soury-avac",
+        "tier": "official_document"
+      },
+      "legal_basis": {
+        "status": "unknown",
+        "reason": "not_applicable"
+      },
+      "jurisdiction": {
+        "status": "unknown",
+        "reason": "not_applicable"
+      },
+      "governing_document": {
+        "status": "unknown",
+        "reason": "not_found"
+      },
+      "budget": [],
+      "funding": {
+        "status": "unknown",
+        "reason": "not_applicable"
+      },
+      "responsible_for": [
+        "cop:obj:us-ny-36061:avac"
+      ],
+      "flag": null
+    }
+  ],
+  "offices": [
+    {
+      "id": "cop:office:us-ny-36061:rioc-president",
+      "title": "President & Chief Executive Officer, RIOC",
+      "institution": "cop:inst:us-ny-36061:rioc",
+      "appointed_by": {
+        "value": "The RIOC Board of Directors, in accordance with its bylaws.",
+        "source": "nysa-rioc",
+        "tier": "authoritative"
+      },
+      "powers": [
+        "Executive management of all island operations",
+        "Capital project delivery",
+        "Procurement",
+        "Public Safety Department"
+      ],
+      "occupancies": [
+        {
+          "name": "B.J. Jones",
+          "from": "2024-08",
+          "to": null,
+          "src": "wp-rioc",
+          "record": {
+            "projects_under_authority": [],
+            "inherited": [
+              "cop:proj:us-ny-36061:avac-upgrade-2019",
+              "cop:proj:us-ny-36061:renwick-stabilisation"
+            ],
+            "bequeathed": [],
+            "aggregates": {
+              "projects_completed_on_schedule": {
+                "status": "unknown",
+                "reason": "not_computable"
+              },
+              "projects_completed_late": {
+                "status": "unknown",
+                "reason": "not_computable"
+              },
+              "note": "NOT COMPUTABLE. The aggregate requires a complete, dated, attributed project register. RIOC does not publish one. This emptiness is the finding \u2014 the derived record is only as good as the project data beneath it, and there is none."
+            },
+            "method": "cop:doc:aggregation-v1 (not yet implemented \u2014 see SCHEMA_NOTES.md)"
+          }
+        },
+        {
+          "name": "Shelton J. Haynes",
+          "from": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "to": "2024 (approx.)",
+          "src": "rioc-news",
+          "record": {
+            "projects_under_authority": [
+              "cop:proj:us-ny-36061:southpoint-shoreline",
+              "cop:proj:us-ny-36061:avac-upgrade-2019"
+            ],
+            "inherited": [],
+            "bequeathed": [
+              "cop:proj:us-ny-36061:avac-upgrade-2019"
+            ],
+            "aggregates": {
+              "note": "NOT COMPUTABLE \u2014 see above."
+            },
+            "method": "cop:doc:aggregation-v1"
+          }
+        },
+        {
+          "name": "Susan Rosenthal",
+          "from": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "to": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "src": "cornell-open",
+          "record": {
+            "projects_under_authority": [],
+            "inherited": [],
+            "bequeathed": [],
+            "aggregates": {
+              "note": "NOT COMPUTABLE \u2014 see above."
+            },
+            "method": "cop:doc:aggregation-v1"
+          }
+        },
+        {
+          "name": "Leslie Torres",
+          "from": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "to": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "src": "almanack",
+          "record": {
+            "projects_under_authority": [
+              "cop:proj:us-ny-36061:tram-modernization"
+            ],
+            "inherited": [],
+            "bequeathed": [],
+            "aggregates": {
+              "note": "NOT COMPUTABLE \u2014 see above."
+            },
+            "method": "cop:doc:aggregation-v1"
+          }
+        }
+      ],
+      "flag": "Four presidents are identifiable from press releases. Their term dates are not published anywhere as a series. To attribute a project to a president, you must reconstruct the timeline from news items \u2014 which is exactly the work this platform exists to make unnecessary."
+    },
+    {
+      "id": "cop:office:us-ny-36061:rioc-board",
+      "title": "RIOC Board of Directors",
+      "institution": "cop:inst:us-ny-36061:rioc",
+      "appointed_by": {
+        "value": "Nominated by the Governor of New York, with the advice and consent of the State Senate. The Chair sits ex officio as Commissioner of NYS Homes & Community Renewal.",
+        "source": "rioc-board",
+        "tier": "authoritative"
+      },
+      "powers": [
+        "Appoints the President/CEO",
+        "Approves the capital programme",
+        "Approves contracts",
+        "Approves the budget"
+      ],
+      "occupancies": [
+        {
+          "name": "RuthAnne Visnauskas \u2014 Chair (ex officio, Commissioner, NYS Homes & Community Renewal)",
+          "from": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "to": null,
+          "src": "rioc-board",
+          "record": {
+            "projects_under_authority": [],
+            "inherited": [],
+            "bequeathed": [],
+            "aggregates": {
+              "note": "NOT COMPUTABLE."
+            },
+            "method": "cop:doc:aggregation-v1"
+          }
+        },
+        {
+          "name": "Blake G. Washington (ex officio, Director of the State Budget)",
+          "from": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "to": null,
+          "src": "rioc-board",
+          "record": {
+            "projects_under_authority": [],
+            "inherited": [],
+            "bequeathed": [],
+            "aggregates": {
+              "note": "NOT COMPUTABLE."
+            },
+            "method": "cop:doc:aggregation-v1"
+          }
+        },
+        {
+          "name": "Fay Christian",
+          "from": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "to": "term expires 2026-05-19",
+          "src": "rioc-board",
+          "record": {
+            "projects_under_authority": [],
+            "inherited": [],
+            "bequeathed": [],
+            "aggregates": {
+              "note": "NOT COMPUTABLE."
+            },
+            "method": "cop:doc:aggregation-v1"
+          }
+        },
+        {
+          "name": "Conway Ekpo",
+          "from": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "to": "term expired 2025-06-10",
+          "src": "rioc-board",
+          "record": {
+            "projects_under_authority": [],
+            "inherited": [],
+            "bequeathed": [],
+            "aggregates": {
+              "note": "NOT COMPUTABLE."
+            },
+            "method": "cop:doc:aggregation-v1"
+          }
+        },
+        {
+          "name": "Prof. Lydia W. Tang",
+          "from": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "to": "term expired 2025-07-01",
+          "src": "rioc-board",
+          "record": {
+            "projects_under_authority": [],
+            "inherited": [],
+            "bequeathed": [],
+            "aggregates": {
+              "note": "NOT COMPUTABLE."
+            },
+            "method": "cop:doc:aggregation-v1"
+          }
+        },
+        {
+          "name": "Dr. Michal L. Melamed",
+          "from": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "to": "term expired 2024-06-10",
+          "src": "rioc-board",
+          "record": {
+            "projects_under_authority": [],
+            "inherited": [],
+            "bequeathed": [],
+            "aggregates": {
+              "note": "NOT COMPUTABLE."
+            },
+            "method": "cop:doc:aggregation-v1"
+          }
+        },
+        {
+          "name": "Marc Jonas Block",
+          "from": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "to": {
+            "status": "unknown",
+            "reason": "not_found"
+          },
+          "src": "rioc-board",
+          "record": {
+            "projects_under_authority": [],
+            "inherited": [],
+            "bequeathed": [],
+            "aggregates": {
+              "note": "NOT COMPUTABLE."
+            },
+            "method": "cop:doc:aggregation-v1"
+          }
+        }
+      ],
+      "flag": "Read the term dates. As recorded in the most recent public listing found, at least three board members' terms had already expired \u2014 one in June 2024, over two years ago. Whether they have been reappointed, replaced, or are simply still sitting is not stated in any public document we could find. This is the single most concrete accountability finding in the pilot, and it took one query."
+    }
+  ],
+  "basemap": {
+    "_note": "Rendering context only. Not passport data. Approximate shapes for orientation.",
+    "island": [
+      [
+        40.749551,
+        -73.958925
+      ],
+      [
+        40.750312,
+        -73.958787
+      ],
+      [
+        40.751256,
+        -73.958598
+      ],
+      [
+        40.752473,
+        -73.95808
+      ],
+      [
+        40.753955,
+        -73.957211
+      ],
+      [
+        40.75557,
+        -73.956166
+      ],
+      [
+        40.757167,
+        -73.95508
+      ],
+      [
+        40.758765,
+        -73.953993
+      ],
+      [
+        40.760362,
+        -73.952907
+      ],
+      [
+        40.761951,
+        -73.951799
+      ],
+      [
+        40.763523,
+        -73.95065
+      ],
+      [
+        40.765086,
+        -73.949481
+      ],
+      [
+        40.766641,
+        -73.94829
+      ],
+      [
+        40.76817,
+        -73.947036
+      ],
+      [
+        40.769665,
+        -73.9457
+      ],
+      [
+        40.770722,
+        -73.944541
+      ],
+      [
+        40.771455,
+        -73.943586
+      ],
+      [
+        40.771668,
+        -73.94311
+      ],
+      [
+        40.771583,
+        -73.942902
+      ],
+      [
+        40.771164,
+        -73.942877
+      ],
+      [
+        40.770158,
+        -73.943164
+      ],
+      [
+        40.768845,
+        -73.943697
+      ],
+      [
+        40.767179,
+        -73.944616
+      ],
+      [
+        40.765547,
+        -73.945619
+      ],
+      [
+        40.763941,
+        -73.946685
+      ],
+      [
+        40.762344,
+        -73.947771
+      ],
+      [
+        40.760755,
+        -73.948878
+      ],
+      [
+        40.759183,
+        -73.950027
+      ],
+      [
+        40.75762,
+        -73.951197
+      ],
+      [
+        40.756056,
+        -73.952367
+      ],
+      [
+        40.754493,
+        -73.953537
+      ],
+      [
+        40.752947,
+        -73.954749
+      ],
+      [
+        40.751584,
+        -73.95591
+      ],
+      [
+        40.750589,
+        -73.956971
+      ],
+      [
+        40.749953,
+        -73.957911
+      ],
+      [
+        40.749449,
+        -73.958675
+      ]
+    ],
+    "manhattan": [
+      [
+        40.747621,
+        -73.964186
+      ],
+      [
+        40.751466,
+        -73.973575
+      ],
+      [
+        40.781494,
+        -73.95214
+      ],
+      [
+        40.777649,
+        -73.942751
+      ],
+      [
+        40.771455,
+        -73.947577
+      ],
+      [
+        40.765262,
+        -73.952402
+      ],
+      [
+        40.758855,
+        -73.956706
+      ],
+      [
+        40.752448,
+        -73.96101
+      ]
+    ],
+    "queens": [
+      [
+        40.745057,
+        -73.957927
+      ],
+      [
+        40.749858,
+        -73.954688
+      ],
+      [
+        40.75612,
+        -73.95003
+      ],
+      [
+        40.762356,
+        -73.945308
+      ],
+      [
+        40.768763,
+        -73.941004
+      ],
+      [
+        40.775085,
+        -73.936492
+      ],
+      [
+        40.77124,
+        -73.927103
+      ],
+      [
+        40.741212,
+        -73.948537
+      ]
+    ],
+    "queensboro_bridge": [
+      [
+        40.762394,
+        -73.9651
+      ],
+      [
+        40.759049,
+        -73.956433
+      ],
+      [
+        40.758321,
+        -73.954256
+      ],
+      [
+        40.757813,
+        -73.952866
+      ],
+      [
+        40.757305,
+        -73.951476
+      ],
+      [
+        40.756673,
+        -73.949635
+      ],
+      [
+        40.7532,
+        -73.940654
+      ]
+    ],
+    "roads": {
+      "main_street": [
+        [
+          40.75668,
+          -73.95389
+        ],
+        [
+          40.759042,
+          -73.952177
+        ],
+        [
+          40.762212,
+          -73.949942
+        ],
+        [
+          40.765364,
+          -73.947665
+        ],
+        [
+          40.76791,
+          -73.945901
+        ]
+      ],
+      "west_road": [
+        [
+          40.755916,
+          -73.955515
+        ],
+        [
+          40.759427,
+          -73.953116
+        ],
+        [
+          40.763395,
+          -73.950337
+        ],
+        [
+          40.766917,
+          -73.947716
+        ],
+        [
+          40.769396,
+          -73.945541
+        ]
+      ],
+      "east_road": [
+        [
+          40.756338,
+          -73.953056
+        ],
+        [
+          40.759465,
+          -73.950716
+        ],
+        [
+          40.7626,
+          -73.948397
+        ],
+        [
+          40.765752,
+          -73.94612
+        ],
+        [
+          40.768445,
+          -73.944467
+        ]
+      ],
+      "loop_north": [
+        [
+          40.768445,
+          -73.944467
+        ],
+        [
+          40.769558,
+          -73.943942
+        ],
+        [
+          40.770131,
+          -73.944343
+        ],
+        [
+          40.769396,
+          -73.945541
+        ]
+      ],
+      "bridge_ramp": [
+        [
+          40.763448,
+          -73.947226
+        ],
+        [
+          40.763388,
+          -73.948077
+        ],
+        [
+          40.763164,
+          -73.948776
+        ]
+      ]
+    }
+  }
+}

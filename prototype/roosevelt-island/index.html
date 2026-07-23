@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cities On Palm — Roosevelt Island</title>
+<meta name="referrer" content="no-referrer">
+<!-- No fonts, no analytics, no CDN, no tile server. Nothing here phones home. -->
+<style>
+:root{
+  --vellum:#DEE0DA; --paper:#E7E9E3; --ink:#14171A; --gneiss:#6E736C;
+  --rule:#B4B8B0; --hair:#C8CBC4; --tram:#B0242A; --verified:#1F5140;
+  --water:#C9CEC9; --land:#D3D6CF; --sel:#14171A;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--vellum); color:var(--ink); font-family:var(--sans);
+  font-size:15px; line-height:1.5; display:flex; flex-direction:column;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+
+/* ---------- masthead ---------- */
+header{
+  border-bottom:1px solid var(--rule); padding:10px 16px;
+  display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; flex:0 0 auto;
+}
+.wordmark{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.scope{font-family:var(--mono);font-size:11px;color:var(--gneiss);letter-spacing:.04em}
+.warn{font-family:var(--mono);font-size:11px;color:var(--tram);margin-left:auto}
+nav{display:flex;gap:2px;margin-left:auto}
+nav button{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 9px;border:1px solid var(--rule);color:var(--gneiss);
+}
+nav button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ---------- shell ---------- */
+main{flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:0}
+@media(max-width:900px){main{grid-template-columns:1fr;grid-template-rows:40vh 1fr}}
+
+/* ---------- map ---------- */
+#mapwrap{position:relative;border-right:1px solid var(--rule);overflow:hidden;background:var(--water)}
+svg#map{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+svg#map:active{cursor:grabbing}
+.island{fill:var(--land);stroke:var(--rule);stroke-width:.6}
+.obj{cursor:pointer}
+.obj .hit{fill:transparent;stroke:transparent;stroke-width:14}
+.obj .mark{fill:none;stroke:var(--ink);stroke-width:1.1;vector-effect:non-scaling-stroke}
+.obj.pt .mark{fill:var(--paper);stroke:var(--gneiss)}
+.obj.t1 .mark{stroke-width:1.8}
+.obj.t1.flagged .mark{stroke:var(--tram)}
+.obj:hover .mark{stroke:var(--tram);stroke-width:2.4}
+.obj.on .mark{stroke:var(--ink);stroke-width:3}
+.obj.on.flagged .mark{stroke:var(--tram)}
+.olabel{font-family:var(--mono);font-size:8px;fill:var(--gneiss);pointer-events:none;letter-spacing:.02em}
+.obj.t1 .olabel{fill:var(--ink);font-size:9px}
+.obj:hover .olabel,.obj.on .olabel{fill:var(--tram);font-weight:600}
+.zoomer{position:absolute;left:10px;bottom:10px;display:flex;flex-direction:column;gap:-1px}
+.zoomer button{
+  width:26px;height:26px;border:1px solid var(--rule);background:var(--paper);
+  font-family:var(--mono);font-size:14px;line-height:1;
+}
+.zoomer button+button{border-top:none}
+.maphint{
+  position:absolute;right:10px;bottom:10px;font-family:var(--mono);font-size:10px;
+  color:var(--gneiss);background:rgba(231,233,227,.85);padding:3px 6px;border:1px solid var(--hair);
+  max-width:230px;text-align:right;
+}
+
+/* ---------- passport ---------- */
+#panel{overflow-y:auto;background:var(--paper);padding:0 0 60px}
+.empty{padding:34px 26px;color:var(--gneiss);max-width:46ch}
+.empty h2{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;font-weight:600}
+.empty p{font-size:14px;margin-bottom:10px}
+.empty .five{font-family:var(--mono);font-size:12px;margin:16px 0 0;padding-left:0;list-style:none}
+.empty .five li{padding:3px 0;border-bottom:1px dotted var(--hair);color:var(--ink)}
+
+.pp{padding:20px 24px}
+.pp-type{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gneiss)}
+.pp-name{font-size:26px;line-height:1.15;font-weight:600;letter-spacing:-.015em;margin:4px 0 6px}
+.pp-id{font-family:var(--mono);font-size:10px;color:var(--gneiss);word-break:break-all}
+.pp-also{font-size:12px;color:var(--gneiss);font-style:italic;margin-top:5px}
+
+.flagbox{
+  border-left:3px solid var(--tram);background:rgba(176,36,42,.05);
+  padding:9px 12px;margin:16px 0 4px;font-size:13.5px;line-height:1.45;
+}
+.flagbox b{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--tram);display:block;margin-bottom:3px;font-weight:600}
+
+h3.sec{
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gneiss);margin:26px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--rule);
+  font-weight:600;display:flex;justify-content:space-between;align-items:baseline;
+}
+h3.sec .q{color:var(--ink);text-transform:none;letter-spacing:0;font-size:11px;font-weight:400;font-style:italic}
+
+/* THE GUTTER — the signature. Every field wears its trust level in the margin. */
+.f{display:grid;grid-template-columns:12px 118px 1fr;gap:0 10px;padding:5px 0;border-bottom:1px dotted var(--hair);align-items:start}
+.f:last-child{border-bottom:none}
+.g{font-family:var(--mono);font-size:11px;line-height:1.5;text-align:center;user-select:none;cursor:help}
+.g.authoritative,.g.official_document{color:var(--verified)}
+.g.cross_referenced,.g.single_source{color:var(--gneiss)}
+.g.unknown,.g.contested{color:var(--tram);font-weight:700}
+.k{font-family:var(--mono);font-size:11px;color:var(--gneiss);padding-top:2px;letter-spacing:.02em}
+.v{font-size:14px;min-width:0}
+.v .num{font-family:var(--mono);font-weight:600;font-size:15px}
+.src{display:block;font-family:var(--mono);font-size:10px;color:var(--gneiss);margin-top:2px}
+.src a{text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--hair)}
+.note{display:block;font-size:12.5px;color:var(--gneiss);margin-top:3px;line-height:1.4}
+
+.unk{color:var(--tram);font-family:var(--mono);font-size:12px}
+.unk .why{color:var(--gneiss);font-family:var(--sans);font-size:12.5px;display:block;margin-top:2px;line-height:1.4}
+.cont{border-left:2px solid var(--tram);padding-left:9px}
+.cont .pos{font-size:13.5px;padding:3px 0}
+.cont .pos+.pos{border-top:1px dotted var(--hair)}
+.cont .lead{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tram);font-weight:600}
+
+/* variance bar */
+.var{margin:10px 0 4px;font-family:var(--mono);font-size:11px}
+.bar{height:12px;background:var(--hair);position:relative;margin:5px 0 3px;border:1px solid var(--rule)}
+.bar .planned{position:absolute;left:0;top:0;bottom:0;background:var(--gneiss)}
+.bar .over{position:absolute;top:0;bottom:0;background:var(--tram)}
+.varlab{display:flex;justify-content:space-between;color:var(--gneiss)}
+.varlab b{color:var(--tram);font-weight:600}
+
+/* project */
+.proj{border:1px solid var(--rule);padding:11px 13px;margin-bottom:12px;background:var(--vellum)}
+.proj h4{font-size:15px;margin-bottom:2px}
+.proj .pid{font-family:var(--mono);font-size:10px;color:var(--gneiss);margin-bottom:8px}
+.ms{font-family:var(--mono);font-size:11.5px;margin-top:8px}
+.ms .row{display:grid;grid-template-columns:1fr 78px 78px;gap:6px;padding:3px 0;border-top:1px dotted var(--hair)}
+.ms .hd{color:var(--gneiss);border-top:none;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.ms .late{color:var(--tram);font-weight:600}
+.ms .none{color:var(--tram)}
+
+/* timeline — git for the built environment */
+.tl{margin-top:6px}
+.ev{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:7px 0;border-left:1px solid var(--rule);margin-left:5px;padding-left:14px;position:relative}
+.ev::before{content:"";position:absolute;left:-3.5px;top:14px;width:6px;height:6px;background:var(--paper);border:1px solid var(--gneiss);border-radius:50%}
+.ev.hot::before{background:var(--tram);border-color:var(--tram)}
+.ev .t{font-family:var(--mono);font-size:11px;color:var(--gneiss);padding-top:1px}
+.ev .w{font-size:13.5px;line-height:1.42}
+.ev .w .s{display:block;font-family:var(--mono);font-size:10px;color:var(--gneiss);margin-top:2px}
+
+.rev{margin-top:22px;padding-top:10px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:10.5px;color:var(--gneiss);line-height:1.6}
+.rev b{color:var(--ink);font-weight:600}
+
+/* legend */
+.legend{padding:12px 24px;border-top:1px solid var(--rule);background:var(--vellum);font-family:var(--mono);font-size:10.5px;color:var(--gneiss)}
+.legend div{padding:2px 0}
+.legend .sym{display:inline-block;width:14px;color:var(--ink)}
+.legend .sym.v{color:var(--verified)}
+.legend .sym.r{color:var(--tram)}
+
+/* institutions view */
+.instlist{padding:20px 24px}
+.inst{border:1px solid var(--rule);padding:13px 15px;margin-bottom:12px;background:var(--vellum);cursor:pointer}
+.inst:hover{border-color:var(--ink)}
+.inst .nm{font-size:17px;font-weight:600}
+.inst .ty{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gneiss);margin-top:2px}
+.inst .md{font-size:13.5px;margin-top:7px;color:var(--ink)}
+.occ{border-top:1px dotted var(--hair);padding:6px 0;display:grid;grid-template-columns:1fr auto;gap:10px;font-size:13.5px;align-items:baseline}
+.occ .term{font-family:var(--mono);font-size:11px;color:var(--gneiss);white-space:nowrap}
+.occ .term.exp{color:var(--tram);font-weight:600}
+.derived{font-family:var(--mono);font-size:10.5px;color:var(--gneiss);background:var(--paper);border:1px dashed var(--rule);padding:7px 9px;margin-top:8px;line-height:1.5}
+
+:focus-visible{outline:2px solid var(--tram);outline-offset:2px}
+@media(prefers-reduced-motion:no-preference){.pp,.instlist{animation:in .16s ease-out}}
+@keyframes in{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="wordmark">Cities On Palm</span>
+  <span class="scope">Roosevelt Island · Manhattan CD8 · pilot 0.1</span>
+  <nav>
+    <button id="tabMap" aria-pressed="true">Objects</button>
+    <button id="tabInst" aria-pressed="false">Who governs</button>
+    <button id="tabTable" aria-pressed="false" onclick="location.href='table.html'">Table</button>
+  </nav>
+</header>
+
+<main>
+  <div id="mapwrap">
+    <svg id="map" role="img" aria-label="Plan of Roosevelt Island. Click an object to open its passport."></svg>
+    <div class="zoomer">
+      <button id="zin" aria-label="Zoom in">+</button>
+      <button id="zout" aria-label="Zoom out">−</button>
+      <button id="zrst" aria-label="Reset view">·</button>
+    </div>
+    <div class="maphint">Geometry is approximate — hand-placed, not surveyed. Drawn locally: no tile server sees your viewport.</div>
+  </div>
+
+  <div id="panel">
+    <div class="empty">
+      <h2>Click any object</h2>
+      <p>Every object of public consequence on this island has a passport. A passport answers five questions, in this order:</p>
+      <ul class="five">
+        <li>1 &nbsp;What is this?</li>
+        <li>2 &nbsp;Who is responsible for it?</li>
+        <li>3 &nbsp;Who paid for it?</li>
+        <li>4 &nbsp;What is happening to it now?</li>
+        <li>5 &nbsp;What has happened to it over its lifetime?</li>
+      </ul>
+      <p style="margin-top:18px">Seven objects here are fully researched. Twenty-two are stubs, and say so. Nothing is invented: where the public record has no answer, the passport says so and names what is missing.</p>
+      <p style="color:var(--tram)">Objects drawn in red have a finding. Start with the Renwick Ruin, the Tram, or AVAC.</p>
+    </div>
+    <div class="legend">
+      <div><span class="sym v">✓</span> authoritative — system of record</div>
+      <div><span class="sym v">·</span> official document</div>
+      <div><span class="sym">~</span> cross-referenced / single source</div>
+      <div><span class="sym r">?</span> unknown — and the passport says why</div>
+      <div><span class="sym r">≠</span> contested — sources disagree; both shown, neither adjudicated</div>
+    </div>
+  </div>
+</main>
+
+<script src="data/passports.js"></script>
+<script>
+const D = window.COP, S = D.sources;
+const P = document.getElementById('panel');
+
+/* ---------- projection ---------- */
+const LAT0=40.7480, LAT1=40.7730, LON0=-73.9640, LON1=-73.9390;
+const W=1000, H=1000;
+const px = ([la,lo]) => [ (lo-LON0)/(LON1-LON0)*W, (LAT1-la)/(LAT1-LAT0)*H ];
+
+/* Island outline — approximate, hand-traced. Marked as such everywhere. */
+const OUTLINE=[[40.7495,-73.9588],[40.7520,-73.9578],[40.7560,-73.9556],[40.7600,-73.9528],
+  [40.7645,-73.9494],[40.7690,-73.9457],[40.7716,-73.9430],[40.7720,-73.9437],[40.7696,-73.9468],
+  [40.7652,-73.9505],[40.7607,-73.9539],[40.7566,-73.9568],[40.7524,-73.9592],[40.7499,-73.9598]];
+
+const svg=document.getElementById('map');
+let view={x:0,y:0,k:1}, sel=null;
+
+function setVB(){
+  const s=1/view.k;
+  svg.setAttribute('viewBox',`${view.x} ${view.y} ${W*s} ${H*s}`);
+}
+function ns(t){return document.createElementNS('http://www.w3.org/2000/svg',t)}
+
+function drawMap(){
+  svg.innerHTML='';
+  const land=ns('polygon');
+  land.setAttribute('points',OUTLINE.map(px).map(p=>p.join(',')).join(' '));
+  land.setAttribute('class','island'); svg.appendChild(land);
+
+  D.objects.forEach(o=>{
+    const g=ns('g');
+    g.setAttribute('class','obj '+(o.tier===1?'t1':'t2')+(o.geom.kind==='point'?' pt':'')+(o.flag?' flagged':''));
+    g.dataset.id=o.id;
+    const pts=o.geom.pts.map(px);
+    let mark, hit;
+    if(o.geom.kind==='point'){
+      mark=ns('circle'); mark.setAttribute('cx',pts[0][0]); mark.setAttribute('cy',pts[0][1]);
+      mark.setAttribute('r',3.4);
+      hit=ns('circle'); hit.setAttribute('cx',pts[0][0]); hit.setAttribute('cy',pts[0][1]); hit.setAttribute('r',11);
+    } else if(o.geom.kind==='poly'){
+      const d=pts.map(p=>p.join(',')).join(' ');
+      mark=ns('polygon'); mark.setAttribute('points',d);
+      hit=ns('polygon'); hit.setAttribute('points',d);
+    } else {
+      const d='M'+pts.map(p=>p.join(',')).join('L');
+      mark=ns('path'); mark.setAttribute('d',d);
+      if(o.geom.kind==='network') mark.setAttribute('stroke-dasharray','5 3');
+      hit=ns('path'); hit.setAttribute('d',d);
+    }
+    mark.setAttribute('class','mark'); hit.setAttribute('class','hit');
+    g.appendChild(hit); g.appendChild(mark);
+
+    const lab=ns('text');
+    const anchor=pts[Math.floor(pts.length/2)];
+    lab.setAttribute('x',anchor[0]+7); lab.setAttribute('y',anchor[1]-5);
+    lab.setAttribute('class','olabel');
+    lab.textContent=o.name.length>30?o.name.slice(0,29)+'…':o.name;
+    g.appendChild(lab);
+
+    g.addEventListener('click',e=>{e.stopPropagation();openObj(o.id)});
+    svg.appendChild(g);
+  });
+  setVB();
+}
+
+/* pan + zoom */
+let drag=null;
+svg.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,vx:view.x,vy:view.y};svg.setPointerCapture(e.pointerId)});
+svg.addEventListener('pointermove',e=>{
+  if(!drag)return;
+  const r=svg.getBoundingClientRect(), s=(W/view.k)/r.width;
+  view.x=drag.vx-(e.clientX-drag.x)*s; view.y=drag.vy-(e.clientY-drag.y)*s; setVB();
+});
+svg.addEventListener('pointerup',()=>drag=null);
+svg.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY<0?1.18:1/1.18)},{passive:false});
+function zoom(f){
+  const cx=view.x+(W/view.k)/2, cy=view.y+(H/view.k)/2;
+  view.k=Math.min(14,Math.max(.9,view.k*f));
+  view.x=cx-(W/view.k)/2; view.y=cy-(H/view.k)/2; setVB();
+}
+zin.onclick=()=>zoom(1.35); zout.onclick=()=>zoom(1/1.35);
+zrst.onclick=()=>{view={x:0,y:0,k:1};setVB()};
+
+/* ---------- rendering primitives ---------- */
+const GLYPH={authoritative:'✓',official_document:'·',cross_referenced:'~',single_source:'~',
+  machine_extracted:'m',contributed:'c'};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function srcLink(k){
+  const s=S[k]; if(!s) return '';
+  return `<span class="src">↳ <a href="${esc(s.uri)}" target="_blank" rel="noopener noreferrer">${esc(s.name)}</a></span>`;
+}
+function money(v){
+  if(typeof v!=='object'||v===null||!('amount' in v)) return esc(v);
+  const n=v.amount.toLocaleString('en-US');
+  return `<span class="num">$${n}</span> <span style="color:var(--gneiss);font-family:var(--mono);font-size:11px">${v.currency} · ${v.year}</span>`;
+}
+
+/* The gutter. This is the whole idea: you can scan a passport vertically
+   and see, instantly, how much of it is actually known. */
+function field(key,val){
+  if(val===undefined||val===null) return '';
+  if(typeof val==='string') return row('~',key,esc(val),'cross_referenced');
+
+  if(val.status==='unknown'){
+    return row('?',key,
+      `<span class="unk">UNKNOWN — ${esc(val.reason)}` +
+      (val.note?`<span class="why">${esc(val.note)}</span>`:'') + `</span>`,'unknown');
+  }
+  if(val.status==='contested'){
+    const pos=val.positions.map(p=>
+      `<div class="pos">${esc(p.value)} ${srcLink(p.src)}</div>`).join('');
+    return row('≠',key,
+      `<div class="cont"><span class="lead">Contested — sources disagree</span>${pos}</div>`+
+      (val.note?`<span class="note">${esc(val.note)}</span>`:''),'contested');
+  }
+  const g=GLYPH[val.tier]||'~';
+  return row(g,key,
+    money(val.value)+srcLink(val.source)+(val.note?`<span class="note">${esc(val.note)}</span>`:''),
+    val.tier);
+}
+function row(g,k,v,cls){
+  return `<div class="f"><div class="g ${cls}" title="${cls.replace(/_/g,' ')}">${g}</div>`+
+         `<div class="k">${esc(k.replace(/_/g,' '))}</div><div class="v">${v}</div></div>`;
+}
+function block(obj){
+  return Object.entries(obj||{}).filter(([k])=>k!=='note')
+    .map(([k,v])=>field(k,v)).join('') +
+    (obj&&obj.note?`<div class="f"><div class="g contested">!</div><div class="k">note</div><div class="v"><span class="note" style="color:var(--ink)">${esc(obj.note)}</span></div></div>`:'');
+}
+
+function variance(p){
+  if(!p.cost_variance&&!p.schedule_variance) return '';
+  let h='';
+  if(p.cost_variance){
+    const c=p.cost_variance, w=100/(1+c.pct/100);
+    h+=`<div class="var"><div class="bar"><div class="planned" style="width:${w}%"></div>`+
+       `<div class="over" style="left:${w}%;right:0"></div></div><div class="varlab">`+
+       `<span>announced $${(c.from/1e6).toFixed(0)}M</span><b>+${c.pct.toFixed(0)}% → $${(c.to/1e6).toFixed(0)}M</b></div></div>`;
+  }
+  if(p.schedule_variance){
+    const s=p.schedule_variance, w=100/(1+s.pct/100);
+    h+=`<div class="var"><div class="bar"><div class="planned" style="width:${w}%"></div>`+
+       `<div class="over" style="left:${w}%;right:0"></div></div><div class="varlab">`+
+       `<span>promised ${s.planned_months} months</span><b>+${s.pct.toFixed(0)}% → ${s.actual_months} months</b></div></div>`;
+  }
+  return h;
+}
+
+function project(p){
+  const ms=(p.milestones||[]).map(m=>{
+    const late=m.actual&&m.planned&&m.actual>m.planned;
+    return `<div class="row"><span>${esc(m.name)}${m.note?`<br><span style="color:var(--gneiss);font-size:10.5px">${esc(m.note)}</span>`:''}</span>`+
+      `<span>${m.planned?esc(m.planned):'—'}</span>`+
+      `<span class="${m.actual?(late?'late':''):'none'}">${m.actual?esc(m.actual):'never'}</span></div>`;
+  }).join('');
+  return `<div class="proj"><h4>${esc(p.title)}</h4><div class="pid">${esc(p.id)}</div>`+
+    block({status:p.status,contractor:p.contractor,engineers:p.engineers,consultant:p.consultant,funding:p.funding})+
+    variance(p)+
+    (ms?`<div class="ms"><div class="row hd"><span>Milestone</span><span>Planned</span><span>Actual</span></div>${ms}</div>`:'')+
+    (p.promised?`<div class="note" style="margin-top:8px">Promised: ${esc(p.promised)}</div>`:'')+
+    (p.note?`<div class="note" style="margin-top:6px">${esc(p.note)}</div>`:'')+
+    `</div>`;
+}
+
+function timeline(h){
+  if(!h||!h.length) return '<p style="color:var(--gneiss);font-size:13px">No history compiled. Not the same as no history.</p>';
+  return '<div class="tl">'+h.map(e=>{
+    const hot=/collaps|fail|strand|clos|expired|demolish|no completion|not secure/i.test(e.what);
+    return `<div class="ev ${hot?'hot':''}"><div class="t">${esc(e.t)}</div>`+
+      `<div class="w">${esc(e.what)}${e.src?`<span class="s">↳ ${esc(S[e.src]?S[e.src].name:e.src)}</span>`:''}</div></div>`;
+  }).join('')+'</div>';
+}
+
+/* ---------- the passport ---------- */
+function openObj(id){
+  const o=D.objects.find(x=>x.id===id); if(!o) return;
+  sel=id;
+  document.querySelectorAll('.obj').forEach(g=>g.classList.toggle('on',g.dataset.id===id));
+
+  const known=[o.ownership,o.responsibility,o.finance,o.lifecycle,o.attributes]
+    .flatMap(b=>Object.values(b||{})).filter(v=>v&&typeof v==='object');
+  const unk=known.filter(v=>v.status==='unknown').length;
+  const con=known.filter(v=>v.status==='contested').length;
+
+  let h=`<div class="pp">
+    <div class="pp-type">${esc(o.type.replace(/_/g,' '))}${o.tier===2?' · stub':''}</div>
+    <div class="pp-name">${esc(o.name)}</div>
+    <div class="pp-id">${esc(o.id)}</div>
+    ${o.also?`<div class="pp-also">also: ${o.also.map(esc).join(' · ')}</div>`:''}`;
+
+  if(o.tier===2){
+    h+=`<div class="flagbox"><b>Stub — not yet researched</b>${esc(o.stub_note||'')}
+      <div style="margin-top:6px;font-size:12.5px;color:var(--gneiss)">This object is rendered and identified, and nothing more.
+      It is shown as a stub rather than omitted, because a gap you can see is worth more than one you cannot.</div></div>`;
+  }
+  if(o.flag) h+=`<div class="flagbox"><b>Finding</b>${esc(o.flag)}</div>`;
+
+  if(unk||con){
+    h+=`<div style="font-family:var(--mono);font-size:11px;color:var(--gneiss);margin-top:14px">
+      ${unk?`<span style="color:var(--tram)">${unk} field${unk>1?'s':''} unknown</span>`:''}
+      ${unk&&con?' · ':''}
+      ${con?`<span style="color:var(--tram)">${con} contested</span>`:''}
+      &nbsp;— scan the left margin.</div>`;
+  }
+
+  h+=`<h3 class="sec">Identity <span class="q">What is this?</span></h3>${block(o.lifecycle)}
+      ${block(o.attributes)}
+    <h3 class="sec">Responsibility <span class="q">Who is accountable?</span></h3>
+      ${block(o.ownership)}${block(o.responsibility)}
+    <h3 class="sec">Money <span class="q">Who paid for it?</span></h3>${block(o.finance)}
+    <h3 class="sec">Now <span class="q">What is happening to it?</span></h3>
+      ${o.projects.length?o.projects.map(project).join(''):'<p style="color:var(--gneiss);font-size:13px">No active or recorded project.</p>'}
+      ${field('inspections',o.inspections)}
+    <h3 class="sec">Lifetime <span class="q">What has happened to it?</span></h3>${timeline(o.history)}`;
+
+  if(o.containment&&o.containment.length){
+    h+=`<h3 class="sec">Containment</h3>`+
+      o.containment.map(c=>`<div class="f"><div class="g cross_referenced">↑</div><div class="k">${esc(c.rel)}</div>`+
+        `<div class="v"><span style="font-family:var(--mono);font-size:12px">${esc(c.target)}</span>`+
+        (c.note?`<span class="note">${esc(c.note)}</span>`:'')+`</div></div>`).join('');
+  }
+  if(o.connected&&o.connected.length){
+    h+=`<h3 class="sec">Connected infrastructure</h3><div style="font-family:var(--mono);font-size:12px;line-height:1.9">`+
+      o.connected.map(c=>{
+        const t=D.objects.find(x=>x.id===c);
+        return t?`<a href="#" onclick="openObj('${c}');return false" style="text-decoration:underline;text-underline-offset:2px">${esc(t.name)}</a>`:esc(c);
+      }).join(' · ')+`</div>`;
+  }
+
+  const r=o.revision;
+  h+=`<div class="rev"><b>revision ${esc(r.id)}</b> · parent: none (genesis)<br>
+    valid_from ${esc(r.valid_from)} · recorded_at ${esc(r.recorded_at)}<br>
+    author ${esc(r.author)}<br>${esc(r.note)}</div></div>`;
+
+  P.innerHTML=h; P.scrollTop=0;
+  tabMap.setAttribute('aria-pressed','true'); tabInst.setAttribute('aria-pressed','false');
+}
+window.openObj=openObj;
+
+/* ---------- institutions ---------- */
+function institutions(){
+  tabMap.setAttribute('aria-pressed','false'); tabInst.setAttribute('aria-pressed','true');
+  let h='<div class="instlist"><div class="empty" style="padding:0 0 18px"><h2>Who governs this island</h2>'+
+    '<p style="max-width:52ch">Six bodies hold authority over 12,000 people on two miles of rock. '+
+    'Their jurisdictions overlap. Shown overlapping, not flattened.</p></div>';
+
+  D.institutions.forEach(i=>{
+    h+=`<div class="inst"><div class="nm">${esc(i.name)}</div><div class="ty">${esc(i.type.replace(/_/g,' '))} · ${esc(i.short)}</div>`+
+      block({mandate:i.mandate,legal_basis:i.legal_basis,jurisdiction:i.jurisdiction,governing_document:i.governing_document,funding:i.funding});
+    if(i.budget&&i.budget.length){
+      h+=i.budget.map(b=>row('~','budget '+b.year,esc(b.figure)+srcLink(b.src),b.tier)).join('');
+    }
+    if(i.responsible_for&&i.responsible_for.length){
+      h+=`<div style="font-family:var(--mono);font-size:11px;color:var(--gneiss);margin-top:9px">responsible for: `+
+        i.responsible_for.map(id=>{const t=D.objects.find(x=>x.id===id);
+          return t?`<a href="#" onclick="openObj('${id}');return false" style="color:var(--ink);text-decoration:underline">${esc(t.name)}</a>`:esc(id);
+        }).join(' · ')+`</div>`;
+    }
+    if(i.flag) h+=`<div class="flagbox" style="margin:12px 0 0"><b>Finding</b>${esc(i.flag)}</div>`;
+    h+=`</div>`;
+  });
+
+  h+='<h3 class="sec" style="margin-top:30px">Offices <span class="q">Accountable as individuals — through their decisions</span></h3>';
+  D.offices.forEach(o=>{
+    h+=`<div class="inst" style="cursor:default"><div class="nm">${esc(o.title)}</div>`+
+      block({appointed_by:o.appointed_by});
+    h+=`<div style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gneiss);margin:12px 0 2px">Occupancy</div>`;
+    o.occupancies.forEach(oc=>{
+      const to = (oc.to&&oc.to.status)?'—':(oc.to||'present');
+      const from = (oc.from&&oc.from.status)?'?':(oc.from||'?');
+      const expired=/expired/.test(String(oc.to));
+      h+=`<div class="occ"><span>${esc(oc.name)}</span>`+
+        `<span class="term ${expired?'exp':''}">${esc(from)} → ${esc(to)}</span></div>`;
+    });
+    h+=`<div class="derived">DERIVED RECORD — computed, never written.<br>`+
+       `Aggregates (projects on schedule, late, abandoned, cost variance, responsiveness) require a complete, dated, `+
+       `attributed project register. RIOC does not publish one. <span style="color:var(--tram)">The aggregate is therefore empty, `+
+       `and the emptiness is the finding.</span></div>`;
+    if(o.flag) h+=`<div class="flagbox" style="margin:12px 0 0"><b>Finding</b>${esc(o.flag)}</div>`;
+    h+=`</div>`;
+  });
+
+  h+='</div>';
+  P.innerHTML=h; P.scrollTop=0;
+}
+
+tabInst.onclick=institutions;
+tabMap.onclick=()=>{location.reload()};
+
+drawMap();
+</script>
+</body>
+</html>
